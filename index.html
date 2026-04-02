@@ -780,72 +780,6 @@ p { font-size: 15px; color: var(--gray-600); }
 .dash-policy.bundle-active { border-color: var(--pink); background: var(--pink-bg); }
 .free-tag { background: var(--green); color: white; font-size: 8px; font-weight: 700; padding: 1px 6px; border-radius: 3px; text-transform: uppercase; letter-spacing: 0.5px; }
 
-/* ========== ROLLOUT TIMELINE ========== */
-.timeline {
-  position: relative;
-  padding-left: 40px;
-  margin-bottom: 40px;
-}
-.timeline::before {
-  content: '';
-  position: absolute;
-  left: 15px;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: var(--gray-200);
-}
-.timeline-phase {
-  position: relative;
-  margin-bottom: 32px;
-}
-.timeline-phase::before {
-  content: '';
-  position: absolute;
-  left: -33px;
-  top: 6px;
-  width: 14px; height: 14px;
-  border-radius: 50%;
-  border: 3px solid var(--pink);
-  background: var(--white);
-  z-index: 1;
-}
-.timeline-phase.done::before { background: var(--pink); }
-.phase-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 10px;
-}
-.phase-title {
-  font-family: var(--font-display);
-  font-size: 20px;
-  font-weight: 700;
-}
-.phase-date {
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--pink);
-  background: var(--pink-bg);
-  padding: 3px 10px;
-  border-radius: 5px;
-}
-.phase-items {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 10px;
-}
-.phase-item {
-  background: var(--white);
-  border-radius: var(--radius-sm);
-  padding: 16px 18px;
-  border: 1px solid var(--gray-200);
-  font-size: 13px;
-  line-height: 1.6;
-}
-.phase-item strong { display: block; font-size: 14px; margin-bottom: 3px; color: var(--dark); }
-.phase-item p { font-size: 13px; }
-
 /* ========== KPI DASHBOARD ========== */
 .kpi-grid {
   display: grid;
@@ -1176,8 +1110,7 @@ p { font-size: 15px; color: var(--gray-600); }
     <a class="nav-link active" data-target="s1">1. Current State</a>
     <a class="nav-link" data-target="s2">2. Research</a>
     <a class="nav-link" data-target="s3">3. Solution</a>
-    <a class="nav-link" data-target="s4">4. Rollout</a>
-    <a class="nav-link" data-target="s5">5. KPIs</a>
+    <a class="nav-link" data-target="s5">4. KPIs</a>
   </div>
 </nav>
 
@@ -1914,104 +1847,9 @@ p { font-size: 15px; color: var(--gray-600); }
 
 <div class="divider"></div>
 
-<!-- ===================== 4. ROLLOUT ===================== -->
-<div class="section" id="s4">
-  <div class="section-label">Section 4</div>
-  <h2>Rollout Plan</h2>
-  <div class="section-sub">A phased approach that delivers value fast, validates hypotheses early, and scales based on data. Each phase builds on the previous one's learnings and infrastructure.</div>
-
-  <div class="timeline">
-    <!-- Phase 1 -->
-    <div class="timeline-phase done">
-      <div class="phase-header">
-        <div class="phase-title">Phase 1 — Foundation</div>
-        <div class="phase-date">Weeks 1–4</div>
-      </div>
-      <div class="phase-items">
-        <div class="phase-item">
-          <strong>Renewal Data Collection</strong>
-          <p>Add the "Do you have car insurance?" and "When does it renew?" questions to the Maya onboarding flow. Quick-reply format. Begin building the renewal timing database.</p>
-        </div>
-        <div class="phase-item">
-          <strong>Express Quote Backend</strong>
-          <p>Build the data-prefill pipeline: pull name, address, DOB, and contact info from renters policy into car quote flow. Reduce form fields from 10+ to 3-4.</p>
-        </div>
-        <div class="phase-item">
-          <strong>A/B Test Setup</strong>
-          <p>Instrument the funnel: onboarding data capture rate, notification opt-in rate, express quote start rate. Set up cohort tracking for Phase 2 comparison.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Phase 2 -->
-    <div class="timeline-phase">
-      <div class="phase-header">
-        <div class="phase-title">Phase 2 — Smart Triggers</div>
-        <div class="phase-date">Weeks 5–8</div>
-      </div>
-      <div class="phase-items">
-        <div class="phase-item">
-          <strong>Renewal Notification Engine</strong>
-          <p>Build the 30-day pre-renewal push notification system. Personalized messaging with carrier name, estimated savings, and deep link to express quote. A/B test notification copy and timing (30 vs. 45 vs. 60 days).</p>
-        </div>
-        <div class="phase-item">
-          <strong>Switch & Save Screen</strong>
-          <p>Build the side-by-side price comparison view. Capture current premium in the express flow, display the savings breakdown with "renters is practically free" framing.</p>
-        </div>
-        <div class="phase-item">
-          <strong>Limited Launch</strong>
-          <p>Roll out to 10% of existing renters customers in top 3 car-available states (Texas, Illinois, Ohio). Monitor conversion rates, notification engagement, and drop-off points.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Phase 3 -->
-    <div class="timeline-phase">
-      <div class="phase-header">
-        <div class="phase-title">Phase 3 — Full Launch & Retention</div>
-        <div class="phase-date">Weeks 9–12</div>
-      </div>
-      <div class="phase-items">
-        <div class="phase-item">
-          <strong>Bundle Dashboard & Gamification</strong>
-          <p>Launch the unified bundle dashboard with cumulative savings tracker, bundle status badges, and gem collection mechanic. Build the retention loop that drives 91%+ retention.</p>
-        </div>
-        <div class="phase-item">
-          <strong>Scale to 100%</strong>
-          <p>Roll out to all renters customers in car-available states. Launch referral sharing ("Share & Give $10 Off") from the celebration screen.</p>
-        </div>
-        <div class="phase-item">
-          <strong>Lifecycle Expansion</strong>
-          <p>Add secondary triggers: address change, turning 25, marriage, new car purchase. Backfill renewal data for existing customers via in-app survey or Maya check-in.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Phase 4 -->
-    <div class="timeline-phase">
-      <div class="phase-header">
-        <div class="phase-title">Phase 4 — Optimization & Next Products</div>
-        <div class="phase-date">Month 4+</div>
-      </div>
-      <div class="phase-items">
-        <div class="phase-item">
-          <strong>ML-Powered Targeting</strong>
-          <p>Train a propensity model on conversion data from Phases 2-3. Predict which customers are most likely to convert and optimize notification timing, messaging, and discount presentation.</p>
-        </div>
-        <div class="phase-item">
-          <strong>Cross-Sell to Pet & Life</strong>
-          <p>Extend the Smart Bundle Engine to Pet and Life insurance. The gem collection mechanic and express quote infrastructure already support it — just add product-specific questions.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="divider"></div>
-
-<!-- ===================== 5. KPIs ===================== -->
+<!-- ===================== 4. KPIs ===================== -->
 <div class="section" id="s5">
-  <div class="section-label">Section 5</div>
+  <div class="section-label">Section 4</div>
   <h2>KPIs & Definition of Success</h2>
   <div class="section-sub">Clear metrics at every layer of the funnel — from engagement through conversion to long-term retention. Each KPI has a target, a baseline, and a rationale.</div>
 
@@ -2135,18 +1973,24 @@ navLinks.forEach(link => {
   });
 });
 
-// Scroll spy
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      navLinks.forEach(l => l.classList.remove('active'));
-      const active = document.querySelector(`.nav-link[data-target="${entry.target.id}"]`);
-      if (active) active.classList.add('active');
+// Scroll spy — update nav on scroll
+function updateActiveNav() {
+  const navHeight = 80;
+  let currentId = '';
+  sections.forEach(section => {
+    const top = section.getBoundingClientRect().top;
+    if (top <= navHeight + 100) {
+      currentId = section.id;
     }
   });
-}, { threshold: 0.15, rootMargin: '-80px 0px -50% 0px' });
-
-sections.forEach(s => observer.observe(s));
+  if (currentId) {
+    navLinks.forEach(l => l.classList.remove('active'));
+    const active = document.querySelector(`.nav-link[data-target="${currentId}"]`);
+    if (active) active.classList.add('active');
+  }
+}
+window.addEventListener('scroll', updateActiveNav, { passive: true });
+updateActiveNav();
 
 // Wireframe journey navigation
 function navigateTo(screenId) {
