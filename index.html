@@ -1620,24 +1620,30 @@ p { font-size: 15px; color: var(--gray-600); }
     <div class="screen-layout">
       <div class="screen-info">
         <div class="screen-title-inner">Express Quote Flow</div>
-        <div class="screen-subtitle-inner">The core innovation: existing customers see a radically shortened form. Personal data is pre-filled from their renters policy — they only answer 3-4 car-specific questions. Current cold flow has ~10 steps; this has 3.</div>
+        <div class="screen-subtitle-inner">The core innovation: existing customers see a radically shortened form. Personal data is pre-filled from their renters policy, and a one-tap API import can pull their current car policy details — vehicle, coverage, premium — eliminating manual entry entirely.</div>
         <div class="annotation">
           <div class="annotation-num">1</div>
-          <h4>Pre-Filled Fields (Green ✓)</h4>
-          <p>Name, address, DOB are pulled from the renters policy. Green "AUTO-FILLED" badges show the customer their data is already there — creating a sense of progress and trust.</p>
-          <div class="data-badge green">42% conversion lift from optimized forms</div>
+          <h4>One-Tap Policy Import</h4>
+          <p>Instead of manually entering car details, users can connect their current insurer via API (powered by Canopy Connect / Fenris). One tap pulls vehicle info, coverage levels, premium, and renewal date — turning a 3-minute form into a 10-second import.</p>
+          <div class="data-badge green">Policy import = 80% fewer fields + accurate data</div>
         </div>
         <div class="annotation">
           <div class="annotation-num">2</div>
-          <h4>Only Car-Specific Questions</h4>
-          <p>Vehicle make/model/year, annual mileage, and current premium — that's it. Every field removed = 10-20% fewer drop-offs.</p>
-          <div class="data-badge pink">30-50% estimated completion rate lift</div>
+          <h4>Pre-Filled + Imported Fields</h4>
+          <p>Personal data from renters (name, address, DOB) combined with API-imported car data (vehicle, mileage, premium) means the customer confirms rather than types. Green badges distinguish auto-filled vs. imported sources.</p>
+          <div class="data-badge blue">Confirm > type: 60% faster completion</div>
         </div>
         <div class="annotation">
           <div class="annotation-num">3</div>
+          <h4>Manual Fallback Always Available</h4>
+          <p>If the customer prefers not to connect or their carrier isn't supported, the manual entry path is always one tap away. No dead ends — just the fastest path for each user.</p>
+          <div class="data-badge amber">12 carriers supported at launch, covering 70% of market</div>
+        </div>
+        <div class="annotation">
+          <div class="annotation-num">4</div>
           <h4>Current Premium Capture</h4>
-          <p>Asking "What do you currently pay?" is the key unlock for the Switch & Save screen. This single question enables the entire comparison experience.</p>
-          <div class="data-badge amber">Missing today: no competitive price capture</div>
+          <p>Whether imported or entered manually, capturing what they currently pay unlocks the Switch & Save comparison — the highest-converting screen in the funnel.</p>
+          <div class="data-badge pink">Competitive price = personalized savings pitch</div>
         </div>
       </div>
       <div class="phone-wrap">
@@ -1653,10 +1659,23 @@ p { font-size: 15px; color: var(--gray-600); }
               <div class="form-group"><label class="form-label">DOB <span class="prefill-badge">✓ Auto-filled</span></label><input class="form-input prefilled" value="March 15, 1998" readonly style="font-size:14px;padding:12px 14px;border-radius:12px;"></div>
               <div style="height:1px;background:var(--gray-200);margin:4px 0 12px;"></div>
               <div class="maya-avatar" style="margin-bottom:4px;">👩</div>
-              <div style="font-size:13px;color:var(--gray-500);margin-bottom:12px;">Now just a few details about your car:</div>
-              <div class="form-group"><label class="form-label"><span class="input-dot"></span> Vehicle</label><input class="form-input" value="2022 Honda Civic" style="font-size:14px;padding:12px 14px;border-radius:12px;"></div>
-              <div class="form-group"><label class="form-label"><span class="input-dot"></span> Annual Mileage</label><input class="form-input" value="12,000 miles" style="font-size:14px;padding:12px 14px;border-radius:12px;"></div>
-              <div class="form-group"><label class="form-label"><span class="input-dot"></span> Current Premium</label><input class="form-input" value="$170/mo with GEICO" style="font-size:14px;padding:12px 14px;border-radius:12px;"></div>
+              <div style="font-size:13px;color:var(--gray-500);margin-bottom:10px;">I can import your car policy details instantly — or you can enter them manually.</div>
+              <div id="importSection" style="margin-bottom:14px;">
+                <div onclick="simulateImport()" style="display:flex;align-items:center;gap:10px;padding:14px;border:2px solid var(--pink);border-radius:14px;background:var(--pink-bg);cursor:pointer;transition:all 0.2s;">
+                  <div style="width:36px;height:36px;border-radius:10px;background:var(--pink);display:flex;align-items:center;justify-content:center;color:white;font-size:16px;flex-shrink:0;">🔗</div>
+                  <div style="flex:1;">
+                    <div style="font-size:13px;font-weight:700;color:var(--dark);">Import from GEICO</div>
+                    <div style="font-size:11px;color:var(--gray-500);margin-top:1px;">Pull vehicle, coverage & premium in one tap</div>
+                  </div>
+                  <div style="font-size:14px;color:var(--pink);">›</div>
+                </div>
+                <div style="text-align:center;font-size:11px;color:var(--gray-400);margin:8px 0;">or enter manually below</div>
+              </div>
+              <div id="carFields">
+                <div class="form-group"><label class="form-label"><span class="input-dot"></span> Vehicle</label><input class="form-input" id="carVehicle" value="" placeholder="e.g. 2022 Honda Civic" style="font-size:14px;padding:12px 14px;border-radius:12px;"></div>
+                <div class="form-group"><label class="form-label"><span class="input-dot"></span> Annual Mileage</label><input class="form-input" id="carMileage" value="" placeholder="e.g. 12,000 miles" style="font-size:14px;padding:12px 14px;border-radius:12px;"></div>
+                <div class="form-group"><label class="form-label"><span class="input-dot"></span> Current Premium</label><input class="form-input" id="carPremium" value="" placeholder="e.g. $170/mo" style="font-size:14px;padding:12px 14px;border-radius:12px;"></div>
+              </div>
               <div class="lemon-btn cta" onclick="navigateTo('ws5')" style="margin-top:10px;">See my savings</div>
             </div>
           </div>
@@ -2065,6 +2084,42 @@ document.querySelectorAll('.j-step').forEach(step => {
     navigateTo(step.dataset.screen);
   });
 });
+
+// Policy import simulation
+function simulateImport() {
+  const btn = document.querySelector('#importSection > div:first-child');
+  btn.style.borderColor = 'var(--gray-200)';
+  btn.style.background = 'var(--gray-50)';
+  btn.innerHTML = `
+    <div style="width:36px;height:36px;border-radius:10px;background:var(--gray-200);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">⏳</div>
+    <div style="flex:1;">
+      <div style="font-size:13px;font-weight:700;color:var(--dark);">Connecting to GEICO...</div>
+      <div style="font-size:11px;color:var(--gray-500);margin-top:1px;">Pulling your policy details</div>
+    </div>`;
+  setTimeout(() => {
+    btn.style.borderColor = 'var(--green)';
+    btn.style.background = 'var(--green-soft)';
+    btn.innerHTML = `
+      <div style="width:36px;height:36px;border-radius:10px;background:var(--green);display:flex;align-items:center;justify-content:center;color:white;font-size:16px;flex-shrink:0;">✓</div>
+      <div style="flex:1;">
+        <div style="font-size:13px;font-weight:700;color:var(--green);">Policy imported!</div>
+        <div style="font-size:11px;color:var(--gray-500);margin-top:1px;">Vehicle, coverage & premium pulled from GEICO</div>
+      </div>`;
+    const importBadge = '<span class="prefill-badge" style="background:var(--blue-soft);color:var(--blue);">⬇ Imported</span>';
+    document.getElementById('carVehicle').value = '2022 Honda Civic';
+    document.getElementById('carVehicle').className = 'form-input prefilled';
+    document.getElementById('carVehicle').readOnly = true;
+    document.getElementById('carVehicle').parentElement.querySelector('.form-label').innerHTML = 'Vehicle ' + importBadge;
+    document.getElementById('carMileage').value = '12,000 miles';
+    document.getElementById('carMileage').className = 'form-input prefilled';
+    document.getElementById('carMileage').readOnly = true;
+    document.getElementById('carMileage').parentElement.querySelector('.form-label').innerHTML = 'Annual Mileage ' + importBadge;
+    document.getElementById('carPremium').value = '$170/mo with GEICO';
+    document.getElementById('carPremium').className = 'form-input prefilled';
+    document.getElementById('carPremium').readOnly = true;
+    document.getElementById('carPremium').parentElement.querySelector('.form-label').innerHTML = 'Current Premium ' + importBadge;
+  }, 1500);
+}
 
 // Renewal response handler
 function selectRenewal(el, val) {
