@@ -3178,7 +3178,7 @@ sections.forEach((section, i) => {
   const nextLabel = tabs[i + 1].textContent;
   const cta = document.createElement('div');
   cta.className = 'next-section-cta';
-  cta.innerHTML = '<span class="next-section-label">Continue reading</span><span class="next-section-name">' + nextLabel + ' →</span>';
+  cta.innerHTML = '<span class="next-section-label">Continue to</span><span class="next-section-name">' + nextLabel + ' →</span>';
   cta.addEventListener('click', () => {
     switchToTab(i + 1);
     window.scrollTo({ top: 0, behavior: 'smooth' });
