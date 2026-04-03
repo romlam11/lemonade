@@ -1590,6 +1590,42 @@ body {
 .bnav-item.active { color: var(--pink); }
 .bnav-icon { font-size: 16px; margin-bottom: 2px; }
 
+/* ===== FLOW SUBNAV ===== */
+.flow-subnav {
+  position: sticky;
+  top: 49px;
+  z-index: 90;
+  display: flex;
+  gap: 4px;
+  background: var(--white);
+  border: 1px solid var(--gray-100);
+  border-radius: var(--radius-sm);
+  padding: 4px;
+  margin-bottom: 32px;
+  box-shadow: var(--shadow-sm);
+}
+.flow-subnav-item {
+  flex: 1;
+  text-align: center;
+  padding: 10px 14px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--gray-400);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.flow-subnav-item:hover {
+  color: var(--dark);
+  background: var(--gray-50);
+}
+.flow-subnav-item.active {
+  color: var(--pink);
+  background: var(--pink-bg);
+  font-weight: 600;
+}
+
 /* ===== NEXT SECTION CTA ===== */
 .next-section-cta {
   display: flex;
@@ -1675,6 +1711,8 @@ body {
 
 /* --- Small mobile (max-width: 480px) --- */
 @media (max-width: 480px) {
+  .flow-subnav { gap: 2px; padding: 3px; }
+  .flow-subnav-item { padding: 8px 8px; font-size: 11px; }
   .hero { padding: 36px 16px 56px; }
   .hero h1 { font-size: 24px; }
   .hero p { font-size: 14px; line-height: 1.6; }
@@ -2219,7 +2257,15 @@ body {
   <div class="section-title">From Data Capture to Renewal Activation</div>
   <div class="section-sub">Three flows power the engine: first, Maya captures the renewal date during onboarding. Then, a dashboard widget provides a passive, always-available path to share renewal data. Finally, the system activates: the dashboard widget transforms into a renewal countdown at 45 days out, and a single push notification fires at 30 days — giving the customer two touchpoints at the moment switching intent peaks.</div>
 
+  <!-- Internal navigation -->
+  <div class="flow-subnav" id="flowSubnav">
+    <div class="flow-subnav-item active" data-flow="flow1">Data Capture</div>
+    <div class="flow-subnav-item" data-flow="flow2">Dashboard Widget</div>
+    <div class="flow-subnav-item" data-flow="flow3">Renewal Activation</div>
+  </div>
+
   <!-- Flow 1 Header -->
+  <div id="flow1"></div>
   <div class="section-label" style="margin-top:8px;">Flow 1 — Data Capture</div>
   <div class="section-title" style="font-size:22px; margin-bottom:6px;">Capturing the Renewal Date</div>
   <div class="section-sub" style="margin-bottom:28px;">During the renters purchase flow, Maya collects the most valuable cross-sell data point: when the customer's car insurance renews. Three paths — exact date, approximate month, or "I don't know" — all feed the engine.</div>
@@ -2399,6 +2445,7 @@ body {
   <!-- Flow 2 Header -->
   <div class="flow-divider" style="margin-top:48px;"><span>Post-onboarding — Dashboard</span></div>
 
+  <div id="flow2"></div>
   <div class="section-label" style="margin-top:28px;">Flow 2 — Dashboard Widget</div>
   <div class="section-title" style="font-size:22px; margin-bottom:6px;">Insurance Calendar Widget</div>
   <div class="section-sub" style="margin-bottom:28px;">A persistent, low-pressure presence on the home dashboard. It shows the customer's existing policies on a timeline and surfaces an inviting gap for car insurance. It doesn't feel like a sales pitch — it feels like an organizational tool the customer <em>wants</em> to complete.</div>
@@ -2746,6 +2793,7 @@ body {
   <!-- Flow 3 Header -->
   <div class="flow-divider" style="margin-top:48px;"><span>30–45 days before renewal</span></div>
 
+  <div id="flow3"></div>
   <div class="section-label" style="margin-top:28px;">Flow 3 — Renewal Activation</div>
   <div class="section-title" style="font-size:22px; margin-bottom:6px;">Activating at the Renewal Window</div>
   <div class="section-sub" style="margin-bottom:28px;">45 days before the captured renewal date, the engine activates. A single personalized push notification arrives — timed, personal, and delivered on a promise Maya made months ago.</div>
@@ -3089,6 +3137,41 @@ sections.forEach((section, i) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
   section.appendChild(cta);
+});
+
+// Flow subnav: click to scroll
+document.querySelectorAll('.flow-subnav-item').forEach(item => {
+  item.addEventListener('click', () => {
+    const target = document.getElementById(item.dataset.flow);
+    if (!target) return;
+    const navBarH = document.querySelector('.nav-bar').offsetHeight || 49;
+    const subnavH = document.getElementById('flowSubnav').offsetHeight || 44;
+    const offset = navBarH + subnavH + 12;
+    window.scrollTo({ top: target.offsetTop - offset, behavior: 'smooth' });
+  });
+});
+
+// Flow subnav: highlight active on scroll
+window.addEventListener('scroll', () => {
+  const flowsSection = document.getElementById('flows');
+  if (!flowsSection || !flowsSection.classList.contains('active')) return;
+
+  const navBarH = document.querySelector('.nav-bar').offsetHeight || 49;
+  const subnavH = document.getElementById('flowSubnav').offsetHeight || 44;
+  const offset = navBarH + subnavH + 20;
+  const anchors = ['flow1', 'flow2', 'flow3'];
+  let currentFlow = 'flow1';
+
+  for (const id of anchors) {
+    const el = document.getElementById(id);
+    if (el && el.offsetTop - offset <= window.scrollY) {
+      currentFlow = id;
+    }
+  }
+
+  document.querySelectorAll('.flow-subnav-item').forEach(item => {
+    item.classList.toggle('active', item.dataset.flow === currentFlow);
+  });
 });
 
 // Quick reply selection
