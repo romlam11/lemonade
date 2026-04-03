@@ -1809,7 +1809,7 @@ body {
   <div class="nav-inner">
     <div class="nav-tab active" data-tab="strategy">Research & Opportunity</div>
     <div class="nav-tab" data-tab="current">Current Product</div>
-    <div class="nav-tab" data-tab="engine">Architecture</div>
+    <div class="nav-tab" data-tab="engine">Architecture &amp; Scope</div>
     <div class="nav-tab" data-tab="flows">Wireframes</div>
     <div class="nav-tab" data-tab="roadmap">KPIs & Rollout</div>
   </div>
@@ -1852,12 +1852,12 @@ body {
     <div class="strategy-card">
       <div class="sc-icon blue">🎯</div>
       <h3>Objective</h3>
-      <p>Increase the renters-to-car bundle conversion rate by capturing car insurance renewal dates and activating personalized cross-sell offers 30–45 days before renewal — when switching intent naturally peaks.</p>
+      <p>Increase the renters-to-car bundle conversion rate by capturing car insurance renewal dates and activating personalized cross-sell offers 30 days before renewal — when switching intent naturally peaks.</p>
     </div>
     <div class="strategy-card">
       <div class="sc-icon green">👥</div>
       <h3>Target Audience</h3>
-      <p>Existing Lemonade renters-only customers who already have car insurance with a competitor, are in a state where Lemonade offers car insurance (~60% of the base), and whose renewal window is approaching within 45 days.</p>
+      <p>Existing Lemonade renters-only customers who already have car insurance with a competitor, are in a state where Lemonade offers car insurance (~60% of the base), and whose renewal window is approaching within 30 days.</p>
     </div>
     <div class="strategy-card">
       <div class="sc-icon amber">⚡</div>
@@ -2121,7 +2121,7 @@ body {
           Decide
         </div>
         <div class="layer-content">
-          <div class="layer-chip"><div class="dot v1"></div> 45-day renewal window trigger</div>
+          <div class="layer-chip"><div class="dot v1"></div> 30-day renewal window trigger</div>
           <div class="layer-chip"><div class="dot v1"></div> State eligibility check</div>
           <div class="layer-chip"><div class="dot v1"></div> Dismiss-twice suppression</div>
           <div class="layer-chip"><div class="dot v2"></div> Rate spike acceleration trigger</div>
@@ -2135,7 +2135,7 @@ body {
         <h4>Decision Rules Engine — V1</h4>
         <p>The rules engine runs a daily check against all customers with stored renewal dates. The logic is deliberately simple in V1 — no ML, no scoring. A clear if/then chain that any engineer can debug and any PM can explain.</p>
         <div class="logic-flow">
-          <div class="logic-step">Renewal date − 45 days = today?</div>
+          <div class="logic-step">Renewal date − 30 days = today?</div>
           <span class="logic-arrow">→</span>
           <div class="logic-step">Check: state offers car insurance?</div>
           <span class="logic-arrow">→</span>
@@ -2144,7 +2144,7 @@ body {
           <div class="logic-step" style="border-color: var(--green); background: var(--green-bg);">Activate L3</div>
         </div>
         <ul>
-          <li><strong>45-day window:</strong> Activation starts 45 days before renewal. Push notification fires at 30 days. This gives the dashboard widget 15 days of passive exposure before the active nudge. Since customers provide month-level data, the engine assumes mid-month (the 15th) as the anchor date. This creates a ±15 day margin — wide enough that even imprecise months fall within the activation window. V1 will validate this assumption against actual conversion timing to refine in V2.</li>
+          <li><strong>30-day window:</strong> Activation starts 30 days before renewal. The dashboard widget transforms into a renewal countdown and a push notification fires — giving the customer two touchpoints at the moment switching intent peaks. Since customers provide month-level data, the engine assumes mid-month (the 15th) as the anchor date. This creates a ±15 day margin — wide enough that even imprecise months fall within the activation window. V1 will validate this assumption against actual conversion timing to refine in V2.</li>
           <li><strong>State check:</strong> ~40% of US states don't have Lemonade car insurance yet. Customers in those states are suppressed from activation (but their data is stored for future expansion).</li>
           <li><strong>Dismiss-twice rule:</strong> If a customer dismisses the dashboard widget or ignores the push notification in two consecutive cycles, suppression kicks in until they show fresh intent (e.g., browsing the car tab). This prevents fatigue without requiring ML.</li>
           <li><strong>V2 expansion:</strong> Rate spike triggers (competitor raises prices), post-claim windows (trust peaks after positive resolution), and behavioral signals (browsed car tab 3+ times) will layer on top of the base time-trigger without replacing it.</li>
@@ -2173,7 +2173,7 @@ body {
         <h4>Delivery Surfaces — V1</h4>
         <p>V1 uses two delivery surfaces plus one conversion surface. The passive surface (dashboard widget) appears first, then the active surface (push) fires 15 days later. Both deep-link to the same express quote flow.</p>
         <div class="logic-flow">
-          <div class="logic-step">Day 45: Dashboard widget appears</div>
+          <div class="logic-step">Day 30: Dashboard widget appears</div>
           <span class="logic-arrow">→</span>
           <div class="logic-step">Day 30: Push notification fires</div>
           <span class="logic-arrow">→</span>
@@ -2208,7 +2208,7 @@ body {
         <ul>
           <li><strong>Dismiss patterns:</strong> Did they dismiss the widget, the push, or both? On the first cycle or second? This tells us whether the surface is wrong (channel problem) or the timing is wrong (window problem).</li>
           <li><strong>Engage-no-convert:</strong> Customers who tap "See My Quote" but don't bind a policy. Is the drop-off at the quote stage (price problem) or the application stage (friction problem)? This shapes V2 interventions.</li>
-          <li><strong>Timing optimization:</strong> V1 uses a fixed 45-day window. V2 tests whether 30-day, 45-day, or 60-day windows convert differently across customer segments. Early data suggests younger customers decide faster (shorter window) while multi-policy holders deliberate longer.</li>
+          <li><strong>Timing optimization:</strong> V1 uses a fixed 30-day window. V2 tests whether 30-day, 45-day, or 60-day windows convert differently across customer segments. Early data suggests younger customers decide faster (shorter window) while multi-policy holders deliberate longer.</li>
         </ul>
       </div>
     </div>
@@ -2236,7 +2236,7 @@ body {
       <div class="state-node">
         <div class="state-dot warn">⏰</div>
         <div class="state-name">window_open</div>
-        <div class="state-desc">45 days out — widget + push activated</div>
+        <div class="state-desc">30 days out — widget + push activated</div>
       </div>
       <div class="state-arrow">→</div>
       <div class="state-node">
@@ -2284,7 +2284,7 @@ body {
 <div class="section" id="flows">
   <div class="section-label">Core Flows</div>
   <div class="section-title">From Data Capture to Renewal Activation</div>
-  <div class="section-sub">Three flows power the engine: first, Maya captures the renewal date during onboarding. Then, a dashboard widget provides a passive, always-available path to share renewal data. Finally, the system activates: the dashboard widget transforms into a renewal countdown at 45 days out, and a single push notification fires at 30 days — giving the customer two touchpoints at the moment switching intent peaks.</div>
+  <div class="section-sub">Three flows power the engine: first, Maya captures the renewal date during onboarding. Then, a dashboard widget provides a passive, always-available path to share renewal data. Finally, the system activates: the dashboard widget transforms into a renewal countdown at 30 days out, and a single push notification fires — giving the customer two touchpoints at the moment switching intent peaks.</div>
 
   <!-- Internal navigation -->
   <div class="flow-subnav" id="flowSubnav">
@@ -2373,7 +2373,7 @@ body {
       <div class="annotation">
         <div class="ann-num">2</div>
         <h4>Month-Level Granularity</h4>
-        <p>Quick-reply buttons show month options (dynamically generated based on current date). No calendar picker, no exact dates. This is deliberately imprecise — month-level is enough to trigger the 45-day window, and it's what customers actually remember.</p>
+        <p>Quick-reply buttons show month options (dynamically generated based on current date). No calendar picker, no exact dates. This is deliberately imprecise — month-level is enough to trigger the 30-day window, and it's what customers actually remember.</p>
         <div class="ann-tag ux">UX: Reducing friction = higher capture rate</div>
       </div>
       <div class="annotation">
@@ -3073,7 +3073,7 @@ body {
       <ul>
         <li>Maya asks renewal date in renters onboarding flow</li>
         <li>Month-level quick-reply buttons + "I'm not sure" path</li>
-        <li>45-day renewal window trigger logic</li>
+        <li>30-day renewal window trigger logic</li>
         <li>Dashboard countdown widget during window</li>
         <li>Single personalized push notification at 30 days</li>
         <li>Basic dismiss-twice suppression</li>
