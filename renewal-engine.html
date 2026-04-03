@@ -1704,25 +1704,33 @@ body {
   .rc-stat { font-size: 28px; }
   .research-card { padding: 20px; }
 
-  /* KPI table responsive: stack rationale below each row */
+  /* KPI table responsive: card layout */
   .kpi-table-wrap { overflow-x: visible; margin: 0; padding: 0; }
   .kpi-table { min-width: 0; }
-  .kpi-table thead th:nth-child(4) { display: none; }
+  .kpi-table thead { display: none; }
   .kpi-table tbody tr {
     display: flex;
     flex-wrap: wrap;
+    align-items: baseline;
+    padding: 16px 0;
     border-bottom: 1px solid var(--gray-100);
   }
+  .kpi-table tbody tr:hover { background: none; }
   .kpi-table tbody td {
     border-bottom: none;
+    padding: 0 16px;
   }
-  .kpi-table tbody td:nth-child(1) { flex: 1 1 100%; padding-bottom: 2px; }
-  .kpi-table tbody td:nth-child(2) { flex: 1 1 60%; }
-  .kpi-table tbody td:nth-child(3) { flex: 0 0 auto; }
+  /* Row 1: KPI name + target on same line */
+  .kpi-table tbody td:nth-child(1) { flex: 1 1 0; padding-bottom: 6px; }
+  .kpi-table tbody td:nth-child(3) { flex: 0 0 auto; padding-bottom: 6px; order: 2; }
+  /* Row 2: Metric */
+  .kpi-table tbody td:nth-child(2) { flex: 1 1 100%; padding-bottom: 10px; order: 3; font-size: 12.5px; }
+  /* Row 3: Rationale */
   .kpi-table tbody td:nth-child(4) {
     flex: 1 1 100%;
+    order: 4;
     padding-top: 0;
-    padding-bottom: 18px;
+    padding-bottom: 0;
     font-size: 12.5px;
     color: var(--gray-500);
     line-height: 1.5;
