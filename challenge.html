@@ -1903,9 +1903,21 @@ body {
 }
 
 @media (max-width: 768px) {
-  .flow-viewer { grid-template-columns: 1fr; }
   .capture-tabs { flex-wrap: wrap; }
   .flow-context-bar { flex-direction: column; gap: 12px; text-align: center; }
+  /* Flatten flow-viewer so phone, annotations, hint, nav can reorder */
+  .capture-flow.active,
+  .flow-panel.active {
+    display: flex;
+    flex-direction: column;
+  }
+  .flow-viewer {
+    display: contents;
+  }
+  .phone-container { order: 1; }
+  .flow-hint { order: 2; margin-top: 16px; }
+  .flow-nav { order: 3; }
+  .flow-annotations { order: 4; margin-top: 24px; }
 }
 @media (max-width: 480px) {
   .capture-tab { padding: 8px 10px; font-size: 12px; }
