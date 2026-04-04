@@ -1903,8 +1903,6 @@ body {
 }
 
 @media (max-width: 768px) {
-  .capture-tabs { flex-wrap: wrap; }
-  .flow-context-bar { flex-direction: column; gap: 12px; text-align: center; }
   /* Flatten flow-viewer so phone, annotations, hint, nav can reorder */
   .capture-flow.active,
   .flow-panel.active {
@@ -1918,29 +1916,36 @@ body {
   .flow-hint { order: 2; margin-top: 16px; }
   .flow-nav { order: 3; }
   .flow-annotations { order: 4; margin-top: 24px; }
-  /* Hide sticky nav bars on scroll */
-  .flow-subnav {
-    transition: top 0.3s ease, opacity 0.3s ease;
-  }
-  .flow-subnav.nav-hidden {
-    top: -60px;
-    opacity: 0;
-    pointer-events: none;
-  }
+  /* Compact pill strip on single line */
+  .flow-subnav,
   .capture-tabs {
-    transition: top 0.3s ease, opacity 0.3s ease;
+    gap: 3px;
+    padding: 3px;
+    margin-bottom: 6px;
+    border-radius: 8px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    flex-wrap: nowrap;
   }
-  .capture-tabs.nav-hidden {
-    top: -60px;
-    opacity: 0;
-    pointer-events: none;
+  .flow-subnav::-webkit-scrollbar,
+  .capture-tabs::-webkit-scrollbar { display: none; }
+  .flow-subnav { top: 49px; }
+  .capture-tabs { top: 82px; }
+  .flow-subnav-item {
+    padding: 5px 10px;
+    font-size: 11px;
+    flex: 0 0 auto;
+  }
+  .capture-tab {
+    padding: 5px 10px;
+    font-size: 11px;
+    flex: 0 0 auto;
   }
 }
 @media (max-width: 480px) {
-  .capture-tab { padding: 8px 10px; font-size: 12px; }
-  .capture-tabs { gap: 2px; }
-  .flow-context-label { font-size: 12px; }
-  .flow-context-sub { font-size: 10px; }
+  .flow-subnav-item { font-size: 10px; padding: 5px 8px; }
+  .capture-tab { font-size: 10px; padding: 5px 8px; }
 }
 
 
@@ -2025,8 +2030,6 @@ body {
 
 /* --- Small mobile (max-width: 480px) --- */
 @media (max-width: 480px) {
-  .flow-subnav { gap: 2px; padding: 3px; }
-  .flow-subnav-item { padding: 8px 8px; font-size: 11px; }
   .hero { padding: 36px 16px 56px; }
   .hero h1 { font-size: 24px; }
   .hero p { font-size: 14px; line-height: 1.6; }
@@ -2534,14 +2537,6 @@ body {
 
     <!-- Onboarding sub-flow -->
     <div class="capture-flow active" id="captureOnboarding">
-      <div class="flow-context-bar">
-        <div class="flow-context-info">
-          <div class="flow-context-label">Renters Onboarding</div>
-          <div class="flow-context-sub">Primary capture point &mdash; during purchase flow</div>
-        </div>
-        <div class="flow-steps" id="onboardingSteps"></div>
-        <button class="flow-reset-btn" onclick="resetFlow('onboarding')">Reset</button>
-      </div>
       <div class="flow-screen-title" id="onboardingTitle"></div>
       <div class="flow-screen-desc" id="onboardingDesc"></div>
       <div class="flow-viewer">
@@ -2554,14 +2549,6 @@ body {
 
     <!-- Post-Claim sub-flow -->
     <div class="capture-flow" id="captureClaim">
-      <div class="flow-context-bar">
-        <div class="flow-context-info">
-          <div class="flow-context-label">Post-Claim Follow-up</div>
-          <div class="flow-context-sub">High-trust moment after claim resolution</div>
-        </div>
-        <div class="flow-steps" id="claimSteps"></div>
-        <button class="flow-reset-btn" onclick="resetFlow('claim')">Reset</button>
-      </div>
       <div class="flow-screen-title" id="claimTitle"></div>
       <div class="flow-screen-desc" id="claimDesc"></div>
       <div class="flow-viewer">
@@ -2574,14 +2561,6 @@ body {
 
     <!-- Profile Self-Serve sub-flow -->
     <div class="capture-flow" id="captureProfile">
-      <div class="flow-context-bar">
-        <div class="flow-context-info">
-          <div class="flow-context-label">Profile Self-Serve</div>
-          <div class="flow-context-sub">Always-available entry point &mdash; zero pressure</div>
-        </div>
-        <div class="flow-steps" id="profileSteps"></div>
-        <button class="flow-reset-btn" onclick="resetFlow('profile')">Reset</button>
-      </div>
       <div class="flow-screen-title" id="profileTitle"></div>
       <div class="flow-screen-desc" id="profileDesc"></div>
       <div class="flow-viewer">
@@ -2599,14 +2578,6 @@ body {
     <div class="section-title" style="font-size:22px; margin-bottom:6px;">Insurance Calendar Widget</div>
     <div class="section-sub" style="margin-bottom:28px;">A persistent presence on the home dashboard. It shows existing policies on a timeline and surfaces an inviting gap for car insurance &mdash; an organizational tool the customer <em>wants</em> to complete.</div>
 
-    <div class="flow-context-bar">
-      <div class="flow-context-info">
-        <div class="flow-context-label">Dashboard Widget Flow</div>
-        <div class="flow-context-sub">Passive collection &rarr; activation surface</div>
-      </div>
-      <div class="flow-steps" id="dashboardSteps"></div>
-      <button class="flow-reset-btn" onclick="resetFlow('dashboard')">Reset</button>
-    </div>
     <div class="flow-screen-title" id="dashboardTitle"></div>
     <div class="flow-screen-desc" id="dashboardDesc"></div>
     <div class="flow-viewer">
@@ -2623,14 +2594,6 @@ body {
     <div class="section-title" style="font-size:22px; margin-bottom:6px;">Activating at the Renewal Window</div>
     <div class="section-sub" style="margin-bottom:28px;">30 days before renewal, the engine fires. A personalized push notification arrives &mdash; timed, personal, and delivering on a promise Maya made months ago. The express quote leverages everything we already know from the renter policy.</div>
 
-    <div class="flow-context-bar">
-      <div class="flow-context-info">
-        <div class="flow-context-label">Renewal Activation Flow</div>
-        <div class="flow-context-sub">The conversion moment &mdash; pre-filled express quote</div>
-      </div>
-      <div class="flow-steps" id="renewalSteps"></div>
-      <button class="flow-reset-btn" onclick="resetFlow('renewal')">Reset</button>
-    </div>
     <div class="flow-screen-title" id="renewalTitle"></div>
     <div class="flow-screen-desc" id="renewalDesc"></div>
     <div class="flow-viewer">
@@ -3496,36 +3459,6 @@ document.querySelectorAll('.capture-tab').forEach(function(tab) {
   renderFlow(flowId);
 });
 
-// Hide flow nav bars on scroll down (mobile only)
-(function() {
-  var lastScrollY = window.scrollY;
-  var subnav = document.getElementById('flowSubnav');
-  var captureTabs = document.querySelector('.capture-tabs');
-  var ticking = false;
-
-  window.addEventListener('scroll', function() {
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(function() {
-      if (window.innerWidth <= 768) {
-        var currentY = window.scrollY;
-        var delta = currentY - lastScrollY;
-        if (delta > 5) {
-          subnav.classList.add('nav-hidden');
-          if (captureTabs) captureTabs.classList.add('nav-hidden');
-        } else if (delta < -5) {
-          subnav.classList.remove('nav-hidden');
-          if (captureTabs) captureTabs.classList.remove('nav-hidden');
-        }
-        lastScrollY = currentY;
-      } else {
-        subnav.classList.remove('nav-hidden');
-        if (captureTabs) captureTabs.classList.remove('nav-hidden');
-      }
-      ticking = false;
-    });
-  });
-})();
 
 
 </script>
