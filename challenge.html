@@ -859,6 +859,23 @@ body {
   background: var(--pink);
   color: var(--white);
 }
+.month-more-link {
+  font-size: 11px;
+  color: var(--pink);
+  cursor: pointer;
+  font-weight: 500;
+  padding: 4px 0;
+  text-align: center;
+  width: 100%;
+}
+.month-more-link:hover { text-decoration: underline; }
+.month-extra {
+  display: none;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+}
+.month-extra.open { display: flex; }
 
 /* Annotations */
 .annotations {
@@ -2338,7 +2355,6 @@ body {
     </div>
     <div class="annotations">
       <div class="annotation">
-        <div class="ann-num">1</div>
         <h4>Now-or-Never Framing</h4>
         <p>Maya shows all five products upfront with "Bundle discount unlocked!" gamification - but it's now-or-never. There's no path for "I already have car insurance elsewhere" or "interested but not ready." The customer either adds car now or the moment passes.</p>
         <span class="cs-tag" style="background: var(--amber-bg); color: var(--amber);">Now-or-never framing</span>
@@ -2356,7 +2372,6 @@ body {
   <div class="cs-row reverse">
     <div class="annotations">
       <div class="annotation">
-        <div class="ann-num">1</div>
         <h4>Generic, Not Personalized</h4>
         <p>Maya highlights generic benefits - "amazing prices," "fast claims" - but nothing personalized. No mention of how much this customer could save, no acknowledgment they likely already have car insurance. Easy to dismiss as marketing fluff.</p>
         <span class="cs-tag" style="background: var(--amber-bg); color: var(--amber);">Generic, not personalized</span>
@@ -2380,13 +2395,11 @@ body {
     </div>
     <div class="annotations">
       <div class="annotation">
-        <div class="ann-num">1</div>
         <h4>The Dead End</h4>
         <p>The customer answers Yes or No - and either way, <strong>that's it</strong>. No follow-up question, no way to circle back later. <span class="hl">The most valuable data point is never collected.</span></p>
         <div class="ann-tag data">Data: Car ownership captured, renewal date is not</div>
       </div>
       <div class="annotation">
-        <div class="ann-num">2</div>
         <h4>Missing Follow-Up</h4>
         <p>A "Yes, I have a car" customer is telling Lemonade they have a policy with a competitor expiring at a specific date. That renewal window is the highest-leverage data point for cross-sell timing. No one asks for it.</p>
         <span class="cs-tag" style="background: var(--pink-bg); color: var(--pink);">The dead end</span>
@@ -2404,7 +2417,6 @@ body {
   <div class="cs-row reverse">
     <div class="annotations">
       <div class="annotation">
-        <div class="ann-num">1</div>
         <h4>Buried & Passive</h4>
         <p>The "Renters + Car bundle" toggle is buried among other add-ons. "See offer after checkout" is vague and easy to skip. The highest-LTV decision in the entire flow gets the lowest-effort treatment - no savings estimate, no personalization, no urgency.</p>
         <span class="cs-tag" style="background: var(--amber-bg); color: var(--amber);">Buried & passive</span>
@@ -2472,13 +2484,13 @@ body {
         <td><span class="kpi-name">Renewal Window Engagement</span></td>
         <td><span class="kpi-metric">% who interact when engine activates</span></td>
         <td><span class="kpi-target">20–30%</span></td>
-        <td style="font-size:12.5px; color:var(--gray-500);">Single personalized push with customer's name and bundle discount. 20-30% reflects push-only engagement; email and dashboard widget push toward the upper range.</td>
+        <td style="font-size:12.5px; color:var(--gray-500);">Personalized outreach with customer's name and bundle discount. 20-30% reflects all channels combined - push, email, and dashboard widget.</td>
       </tr>
       <tr>
         <td><span class="kpi-name">Renewal-Timed Conversion</span></td>
         <td><span class="kpi-metric">% of engaged users who bind a car policy</span></td>
         <td><span class="kpi-target">25–30%</span></td>
-        <td style="font-size:12.5px; color:var(--gray-500);">Engaged users (tapped push, clicked widget) are high-intent. Pre-filled express quote removes ~70% of form friction, and the renewal window catches peak switching intent. Lemonade's untimed cross-sell converts at ~3-4%; timing + intent filtering + reduced friction yields a 7-10x lift.</td>
+        <td style="font-size:12.5px; color:var(--gray-500);">Engaged users (tapped push, opened email, clicked widget) are high-intent. Pre-filled express quote removes ~70% of form friction, and the renewal window catches peak switching intent. Lemonade's untimed cross-sell converts at ~3-4%; timing + intent filtering + reduced friction yields a 7-10x lift.</td>
       </tr>
       <tr class="kpi-north-star">
         <td><span class="kpi-name">Bundle Rate Impact ⭐</span><span class="kpi-north-star-tag">North Star</span></td>
@@ -2527,7 +2539,7 @@ body {
         <li>Two-arm A/B test: promise-only vs. promise + immediate incentive</li>
       </ul>
       <button class="rm-why-toggle" onclick="toggleWhy(this)"><span class="rm-arrow">▶</span> Why this scope?</button>
-      <div class="rm-rationale">V1 is deliberately minimal: one collection point, one outbound channel, one conversion surface. The goal is to validate whether timed outreach converts meaningfully better than untimed cross-sell — not to build a full system. A two-arm A/B test (promise-only vs. promise + incentive) is enough to establish a baseline; adding more arms requires more volume per cohort and delays time-to-learning. Everything here can ship in 6–8 weeks with a small cross-functional team, which keeps the bet cheap and the learning fast.</div>
+      <div class="rm-rationale" style="font-size: 14px;">V1 is deliberately minimal: one collection point, one outbound channel, one conversion surface. The goal is to validate whether timed outreach converts meaningfully better than untimed cross-sell — not to build a full system. A two-arm A/B test (promise-only vs. promise + incentive) is enough to establish a baseline; adding more arms requires more volume per cohort and delays time-to-learning. Everything here can ship in 6–8 weeks with a small cross-functional team, which keeps the bet cheap and the learning fast.</div>
     </div>
     <div class="roadmap-card">
       <div class="rm-badge next">V2 — Expand the Funnel (Q3)</div>
@@ -2535,26 +2547,21 @@ body {
       <h4>Scale to ~1.5M Existing Renters</h4>
       <ul>
         <li>Dashboard Calendar Widget — passive collection + activation surface for existing customers</li>
-        <li>Profile self-serve renewal date entry point</li>
+        <li>Post-claim follow-up collection point (high-trust moment, different interaction context)</li>
         <li>Email channel alongside push (test channel preference, not just timing)</li>
         <li>Three-arm A/B test on value exchange (now informed by V1 baseline data)</li>
       </ul>
-      <button class="rm-why-toggle" onclick="toggleWhy(this)"><span class="rm-arrow">▶</span> Why this scope?</button>
-      <div class="rm-rationale">V1 only reaches new customers entering through onboarding. The dashboard calendar widget unlocks the ~1.5M existing renters who already completed onboarding — it serves double duty as both a passive collection point (customers voluntarily add their renewal date to complete their timeline) and an activation surface (it transforms into a countdown when the window opens). The profile self-serve entry gives customers who missed the onboarding ask a place to add their date on their own terms. Email adds a second outbound channel so we can test channel preference, not just timing. And with V1 baseline data in hand, we can design a smarter three-arm A/B test on the value exchange.</div>
     </div>
     <div class="roadmap-card">
       <div class="rm-badge later">V3 — Intelligence Layer (Q4+)</div>
       <div class="rm-question">Can we get smarter about which customers to reach and when?</div>
       <h4>Signal-Driven Activation</h4>
       <ul>
-        <li>Post-claim follow-up collection point (high-trust moment, different interaction context)</li>
         <li>Rate spike acceleration trigger (competitive rate increases as outreach signal)</li>
         <li>In-app intent detection (browsed car tab → accelerate their window)</li>
         <li>Segment-based suppression & personalization rules</li>
         <li>Optimal timing A/B testing (30 vs. 45 vs. 60 days)</li>
       </ul>
-      <button class="rm-why-toggle" onclick="toggleWhy(this)"><span class="rm-arrow">▶</span> Why this scope?</button>
-      <div class="rm-rationale">Post-claim follow-up is a fundamentally different interaction context than onboarding or dashboard — it requires integrating with the claims resolution flow, which is a different team's domain with its own UX sensitivities. It also needs enough claim volume to generate meaningful data, and baseline conversion rates from earlier phases to measure whether the high-trust post-claim moment actually lifts capture rate. The intelligence features (rate spike triggers, intent detection, suppression rules) all depend on having enough funnel data to segment and optimize against — making V3 the right time to layer them in.</div>
     </div>
     <div class="roadmap-card">
       <div class="rm-badge later">Platform Vision</div>
@@ -2596,7 +2603,7 @@ body {
     <div class="risk-item">
       <div class="risk-label med">Medium Risk</div>
       <h5>State Availability Gap</h5>
-      <p>Car insurance only available in ~10 states (~60% of base). <strong>Mitigation:</strong> Only collect and activate for eligible customers. For ineligible states, store the data - it becomes instantly valuable when Lemonade expands to that state.</p>
+      <p>Car insurance only available in ~10 states (~60% of base). <strong>Mitigation:</strong> Only activate for eligible customers. For ineligible states, collect and store the data - it becomes instantly valuable when Lemonade expands to that state.</p>
     </div>
     <div class="risk-item">
       <div class="risk-label med">Medium Risk</div>
@@ -2627,8 +2634,7 @@ body {
 
     <div class="capture-tabs">
       <div class="capture-tab active" data-capture="onboarding">Renters Onboarding <span style="font-size:9px; opacity:0.5; margin-left:3px;">V1</span></div>
-      <div class="capture-tab" data-capture="profile">Profile Self-Serve <span style="font-size:9px; opacity:0.5; margin-left:3px;">V2</span></div>
-      <div class="capture-tab" data-capture="claim">Post-Claim Follow-up <span style="font-size:9px; opacity:0.5; margin-left:3px;">V3</span></div>
+      <div class="capture-tab" data-capture="claim">Post-Claim Follow-up <span style="font-size:9px; opacity:0.5; margin-left:3px;">V2</span></div>
     </div>
 
     <!-- Onboarding sub-flow -->
@@ -2641,18 +2647,6 @@ body {
       </div>
       <div class="flow-hint" id="onboardingHint"></div>
       <div class="flow-nav" id="onboardingNav"></div>
-    </div>
-
-    <!-- Profile Self-Serve sub-flow -->
-    <div class="capture-flow" id="captureProfile">
-      <div class="flow-screen-title" id="profileTitle"></div>
-      <div class="flow-screen-desc" id="profileDesc"></div>
-      <div class="flow-viewer">
-        <div class="phone-container"><div id="profilePhone"></div></div>
-        <div class="flow-annotations" id="profileAnnotations"></div>
-      </div>
-      <div class="flow-hint" id="profileHint"></div>
-      <div class="flow-nav" id="profileNav"></div>
     </div>
 
     <!-- Post-Claim sub-flow -->
@@ -2741,6 +2735,25 @@ sections.forEach((section, i) => {
 // ====== INTERACTIVE FLOW VIEWER ======
 
 const flowState = {};
+const flowPrevStep = {};
+
+function toggleExtraMonths(el) {
+  var extra = el.previousElementSibling;
+  if (extra && extra.classList.contains('month-extra')) {
+    extra.classList.toggle('open');
+    el.textContent = extra.classList.contains('open') ? 'Fewer months' : 'Different month';
+  }
+}
+
+function goToStep(flowId, step) {
+  flowPrevStep[flowId] = flowState[flowId] || 0;
+  flowState[flowId] = step;
+  renderFlow(flowId);
+  var phoneEl = document.getElementById(flowId + 'Phone');
+  if (phoneEl) {
+    phoneEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+}
 
 // Helper: phone frame wrapper
 function phoneFrame(title, bodyHtml, opts) {
@@ -2807,15 +2820,27 @@ var flows = {
           When does your car policy renew? I\'ll send you a personalized quote with your bundle discount applied when the time comes.\
         </div>\
         <div class="quick-replies">\
-          <div class="quick-reply flow-trigger" onclick="advanceFlow(\'onboarding\')">June</div>\
-          <div class="quick-reply flow-trigger" onclick="advanceFlow(\'onboarding\')">July</div>\
-          <div class="quick-reply flow-trigger" onclick="advanceFlow(\'onboarding\')">August</div>\
-          <div class="quick-reply">I\'m not sure</div>\
+          <div class="quick-reply flow-trigger" onclick="advanceFlow(\'onboarding\')">May</div>\
+          <div class="quick-reply flow-trigger" onclick="advanceFlow(\'onboarding\')">Jun</div>\
+          <div class="quick-reply flow-trigger" onclick="advanceFlow(\'onboarding\')">Jul</div>\
+          <div class="quick-reply flow-trigger" onclick="advanceFlow(\'onboarding\')">Aug</div>\
+          <div class="month-extra">\
+            <div class="quick-reply flow-trigger" onclick="advanceFlow(\'onboarding\')">Sep</div>\
+            <div class="quick-reply flow-trigger" onclick="advanceFlow(\'onboarding\')">Oct</div>\
+            <div class="quick-reply flow-trigger" onclick="advanceFlow(\'onboarding\')">Nov</div>\
+            <div class="quick-reply flow-trigger" onclick="advanceFlow(\'onboarding\')">Dec</div>\
+            <div class="quick-reply flow-trigger" onclick="advanceFlow(\'onboarding\')">Jan</div>\
+            <div class="quick-reply flow-trigger" onclick="advanceFlow(\'onboarding\')">Feb</div>\
+            <div class="quick-reply flow-trigger" onclick="advanceFlow(\'onboarding\')">Mar</div>\
+            <div class="quick-reply flow-trigger" onclick="advanceFlow(\'onboarding\')">Apr</div>\
+          </div>\
+          <div class="month-more-link" onclick="toggleExtraMonths(this)">Different month</div>\
+          <div class="quick-reply flow-trigger" onclick="goToStep(\'onboarding\', 3)">I\'m not sure</div>\
         </div>'),
       annotations: [
-        annCard(1, 'The Bundle Hook + Immediate Incentive', 'Before asking for the date, Maya leads with value: a personalized quote with 10% bundle discount. V1 tests an additional immediate incentive in one A/B arm (e.g., "$5 Giveback bonus")  - giving the customer a reason to act now.', [{type:'metric', text:'Metric: 10% guaranteed bundle discount'}, {type:'insight', text:'Insight: Future value motivates, but immediate value converts'}]),
-        annCard(2, 'Month-Level Granularity', 'Quick-reply buttons show months  - no calendar picker, no exact dates. Month-level is enough to trigger the 30-day activation window, and it\'s what customers actually remember.', [{type:'ux', text:'UX: Reducing friction = higher capture rate'}]),
-        annCard(3, 'The "I\'m Not Sure" Escape', '~40% of customers won\'t know their renewal date. Maya doesn\'t pressure them  - she offers a helpful tip and stores them as inferred targets. They can update later via the dashboard or profile page.', [{type:'data', text:'Data: "Not sure" \u2192 inferred from renters timing'}])
+        annCard(1, 'The Bundle Hook + Immediate Incentive', 'Before asking for the date, Maya leads with value: a personalized quote with 10% bundle discount. V1 tests an additional immediate incentive in one A/B arm (e.g., "$5 Giveback bonus") - giving the customer a reason to act now.', [{type:'metric', text:'Metric: 10% guaranteed bundle discount'}, {type:'insight', text:'Insight: Future value motivates, but immediate value converts'}]),
+        annCard(2, 'Smart Month Defaults', 'Buttons show the next 4 months dynamically (here: May-Aug for an April purchase). Renewals within ~4 months are immediately actionable - the 30-day outreach fires within one quarter. "Different month" expands the remaining 8 for the long-tail case, keeping the common path frictionless.', [{type:'ux', text:'UX: Reducing friction = higher capture rate'}, {type:'insight', text:'Insight: Smartest V1 approach'}]),
+        annCard(3, 'The "I\'m Not Sure" Escape', '~40% of customers won\'t know their renewal date. Maya doesn\'t pressure them - she offers a helpful tip and stores them as inferred targets. They can update later via the dashboard.', [{type:'data', text:'Data: "Not sure" \u2192 inferred from renters timing'}])
       ],
       hint: 'Select a month to continue \u2192'
     },
@@ -2835,7 +2860,22 @@ var flows = {
       annotations: [
         annCard(1, 'Specific Future Commitment', '"Early July  - about 30 days before your renewal" creates anticipation and legitimacy. It pre-frames the push notification. In the incentive A/B arm, Maya also confirms the immediate reward here ("$5 Giveback bonus added!").', [{type:'ux', text:'UX: Opt-in framing for future notification'}, {type:'insight', text:'Insight: Immediate confirmation reduces anxiety'}]),
         annCard(2, 'The Three-Promise Preview', 'Listing what they\'ll get (personalized quote, automatic discount, seamless coverage) raises perceived value. When the push arrives, it delivers on a promise  - not an interruption.', [{type:'insight', text:'Insight: Promise now \u2192 deliver later = trust'}]),
-        annCard(3, 'Soft Exit with Optionality', '"Check car insurance rates anytime in the app" leaves the door open without pressure. Early explorers are high-intent signals for V2.', [{type:'data', text:'Data: Early explorers = high-intent signals'}])
+        annCard(3, 'Soft Exit with Optionality', '"Check car insurance rates anytime in the app" leaves the door open without pressure. Early explorers are high-intent signals.', [{type:'data', text:'Data: Early explorers = high-intent signals'}])
+      ],
+      hint: 'Next: see the "I\'m not sure" path \u2192'
+    },
+    {
+      title: 'The "I\'m Not Sure" Path',
+      desc: 'When a customer doesn\'t know their renewal date, Maya doesn\'t pressure them. Instead, she infers a window from the purchase date and keeps the door open.',
+      phone: phoneFrame('Maya', '\
+        <div class="chat-user">I\'m not sure</div>\
+        <div class="chat-maya" style="animation-delay:0.1s">No worries at all! Here\'s a quick tip - you can usually find your renewal date in your current insurer\'s app or on your policy card. \u{1F4CB}</div>\
+        <div class="chat-maya" style="animation-delay:0.3s">In the meantime, I\'ll keep an eye out and reach out when the time might be right. You can also add your renewal date anytime in your dashboard. \u{1F4C5}</div>\
+        <div class="chat-maya" style="animation-delay:0.5s">Enjoy your new renters coverage! \u{1F3E0}</div>'),
+      annotations: [
+        annCard(1, 'No Pressure, No Dead End', 'Maya acknowledges the uncertainty without making the customer feel bad. The helpful tip ("check your insurer\'s app or policy card") gives them a concrete action if they want to follow up later.', [{type:'ux', text:'UX: Empathy > interrogation'}]),
+        annCard(2, 'Inference Engine', 'Behind the scenes, the system infers a likely renewal window from the renters purchase date. Most car policies are 6 or 12 months, so a customer buying renters in April likely renews car insurance in April or October. This inferred date enters the pipeline as a soft signal.', [{type:'data', text:'Data: Inferred date \u2192 soft activation signal'}]),
+        annCard(3, 'Multiple Recovery Paths', 'The customer can update their renewal date later via the dashboard widget. The system doesn\'t rely on a single collection moment - every touchpoint is a chance to capture or refine the data.', [{type:'insight', text:'Insight: No single point of failure'}])
       ],
       hint: '\u2713 Flow complete',
       complete: true
@@ -2874,14 +2914,26 @@ var flows = {
         <div class="chat-user">Yes, I have car insurance</div>\
         <div class="chat-maya">Perfect! When does your car policy renew? I\'ll send you a personalized quote with your <strong>10% bundle discount</strong> about 30 days before.</div>\
         <div class="quick-replies">\
-          <div class="quick-reply flow-trigger" onclick="advanceFlow(\'claim\')">June</div>\
-          <div class="quick-reply flow-trigger" onclick="advanceFlow(\'claim\')">July</div>\
-          <div class="quick-reply flow-trigger" onclick="advanceFlow(\'claim\')">August</div>\
-          <div class="quick-reply">I\'m not sure</div>\
+          <div class="quick-reply flow-trigger" onclick="advanceFlow(\'claim\')">May</div>\
+          <div class="quick-reply flow-trigger" onclick="advanceFlow(\'claim\')">Jun</div>\
+          <div class="quick-reply flow-trigger" onclick="advanceFlow(\'claim\')">Jul</div>\
+          <div class="quick-reply flow-trigger" onclick="advanceFlow(\'claim\')">Aug</div>\
+          <div class="month-extra">\
+            <div class="quick-reply flow-trigger" onclick="advanceFlow(\'claim\')">Sep</div>\
+            <div class="quick-reply flow-trigger" onclick="advanceFlow(\'claim\')">Oct</div>\
+            <div class="quick-reply flow-trigger" onclick="advanceFlow(\'claim\')">Nov</div>\
+            <div class="quick-reply flow-trigger" onclick="advanceFlow(\'claim\')">Dec</div>\
+            <div class="quick-reply flow-trigger" onclick="advanceFlow(\'claim\')">Jan</div>\
+            <div class="quick-reply flow-trigger" onclick="advanceFlow(\'claim\')">Feb</div>\
+            <div class="quick-reply flow-trigger" onclick="advanceFlow(\'claim\')">Mar</div>\
+            <div class="quick-reply flow-trigger" onclick="advanceFlow(\'claim\')">Apr</div>\
+          </div>\
+          <div class="month-more-link" onclick="toggleExtraMonths(this)">Different month</div>\
+          <div class="quick-reply flow-trigger" onclick="goToStep(\'claim\', 3)">I\'m not sure</div>\
         </div>'),
       annotations: [
-        annCard(1, 'Consistent UX Pattern', 'Same month-level quick replies as the onboarding flow. Customers who interact with multiple touchpoints see a familiar, predictable experience every time.', [{type:'ux', text:'UX: Pattern consistency builds trust'}]),
-        annCard(2, 'Cross-Touchpoint Data Merge', 'If the customer already provided a date during onboarding, this screen is skipped. The system checks for existing data before asking  - never asks twice.', [{type:'data', text:'Data: Dedup across collection points'}])
+        annCard(1, 'Consistent UX Pattern', 'Same dynamic next-4-months quick replies as the onboarding flow. Customers who interact with multiple touchpoints see a familiar, predictable experience every time.', [{type:'ux', text:'UX: Pattern consistency builds trust'}]),
+        annCard(2, 'Cross-Touchpoint Data Merge', 'If the customer already provided a date during onboarding, this screen is skipped. The system checks for existing data before asking - never asks twice.', [{type:'data', text:'Data: Dedup across collection points'}])
       ],
       hint: 'Select a month to continue \u2192'
     },
@@ -2893,142 +2945,22 @@ var flows = {
         <div class="chat-maya" style="animation-delay:0.1s">Noted! I\'ll reach out in early July with your personalized car quote  - with your 10% bundle discount already applied. \u{1F4C5}</div>\
         <div class="chat-maya" style="animation-delay:0.3s">Glad we could resolve your claim quickly, Sarah. Enjoy your coverage! \u{1F3E0}</div>'),
       annotations: [
-        annCard(1, 'Same Promise, Different Context', 'Whether captured during onboarding, post-claim, or self-serve  - the system delivers the same promise: a personalized quote 30 days before renewal. Consistency builds trust.', [{type:'insight', text:'Insight: Consistent promises across touchpoints'}]),
-        annCard(2, 'Claim \u2192 Cross-Sell Pipeline', 'The claim resolution naturally transitions into the renewal engine. No separate campaign needed  - the system captures the data inline and feeds it to the same activation pipeline.', [{type:'data', text:'Data: Unified pipeline for all capture points'}])
+        annCard(1, 'Same Promise, Different Context', 'Whether captured during onboarding or post-claim - the system delivers the same promise: a personalized quote 30 days before renewal. Consistency builds trust.', [{type:'insight', text:'Insight: Consistent promises across touchpoints'}]),
+        annCard(2, 'Claim \u2192 Cross-Sell Pipeline', 'The claim resolution naturally transitions into the renewal engine. No separate campaign needed - the system captures the data inline and feeds it to the same activation pipeline.', [{type:'data', text:'Data: Unified pipeline for all capture points'}])
       ],
-      hint: '\u2713 Flow complete',
-      complete: true
-    }
-  ]},
-
-  // ---- PROFILE SELF-SERVE FLOW ----
-  profile: { screens: [
-    {
-      title: 'Profile Coverage Section',
-      desc: 'The profile page shows active coverage with a prominent invitation to track car insurance renewal  - always available, zero pressure.',
-      phone: phoneFrame('Lemonade', '\
-        <div style="text-align:center; padding:20px 16px 12px;">\
-          <div style="width:52px; height:52px; border-radius:50%; background:linear-gradient(135deg, var(--pink-bg), var(--pink)); display:inline-flex; align-items:center; justify-content:center; font-size:18px; color:white; font-weight:700;">SC</div>\
-          <div style="font-weight:600; margin-top:8px; font-size:14px;">Sarah Chen</div>\
-          <div style="font-size:11px; color:var(--gray-400);">Member since 2024</div>\
-        </div>\
-        <div style="padding:0 16px;">\
-          <div style="font-size:10px; font-weight:600; color:var(--gray-400); text-transform:uppercase; letter-spacing:1px; margin-bottom:8px;">My Coverage</div>\
-          <div style="background:var(--gray-50); border-radius:10px; padding:12px; margin-bottom:8px;">\
-            <div style="display:flex; align-items:center; gap:8px;">\
-              <div style="width:28px; height:28px; border-radius:8px; background:var(--blue-bg); display:flex; align-items:center; justify-content:center; font-size:13px;">\u{1F3E0}</div>\
-              <div style="flex:1;">\
-                <div style="font-size:12px; font-weight:600;">Renters Insurance</div>\
-                <div style="font-size:10px; color:var(--gray-400);">$18/mo \u00B7 Renews Mar 2027</div>\
-              </div>\
-              <div style="font-size:9px; padding:2px 7px; border-radius:6px; background:var(--green-bg); color:var(--green); font-weight:600;">Active</div>\
-            </div>\
-          </div>\
-          <div class="flow-trigger" onclick="advanceFlow(\'profile\')" style="background:var(--pink-bg); border:1.5px dashed rgba(255,0,131,0.3); border-radius:10px; padding:12px; cursor:pointer;">\
-            <div style="display:flex; align-items:center; gap:8px;">\
-              <div style="width:28px; height:28px; border-radius:8px; background:white; border:1px dashed var(--pink); display:flex; align-items:center; justify-content:center; font-size:13px;">\u{1F697}</div>\
-              <div style="flex:1;">\
-                <div style="font-size:12px; font-weight:600; color:var(--pink);">Car Insurance</div>\
-                <div style="font-size:10px; color:var(--gray-500);">Track your renewal date \u00B7 Get 10% bundle discount</div>\
-              </div>\
-              <div style="font-size:18px; color:var(--pink); font-weight:300;">+</div>\
-            </div>\
-          </div>\
-        </div>', {nav: 'Home', action: '\u{1F514}', back: false, bodyStyle: 'padding:0; gap:0;'}),
-      annotations: [
-        annCard(1, 'Always Available, Zero Pressure', 'Unlike the onboarding or post-claim flows, the profile page is always accessible. The customer discovers this on their own terms  - no conversational prompt, no timing dependency.', [{type:'ux', text:'UX: Self-serve > prompted ask'}]),
-        annCard(2, 'Completion Bias at Work', 'The dashed border and pink "+" create a visual gap in the coverage profile. The same completion bias that powers the Insurance Calendar widget works here  - the customer wants to fill the gap.', [{type:'data', text:'Data: Completion bias \u2192 20-30% higher engagement'}]),
-        annCard(3, 'Value Preview', '"Get 10% bundle discount" is visible before the customer taps. They know the benefit upfront  - reducing friction and setting expectations.', [{type:'metric', text:'Metric: 10% bundle discount'}])
-      ],
-      hint: 'Click the Car Insurance card to continue \u2192'
+      hint: 'Next: see the "I\'m not sure" path \u2192'
     },
     {
-      title: 'Inline Renewal Date Entry',
-      desc: 'The card expands inline to show the familiar month grid  - no page navigation required. Same pattern, same low friction.',
-      phone: phoneFrame('Lemonade', '\
-        <div style="text-align:center; padding:20px 16px 12px;">\
-          <div style="width:52px; height:52px; border-radius:50%; background:linear-gradient(135deg, var(--pink-bg), var(--pink)); display:inline-flex; align-items:center; justify-content:center; font-size:18px; color:white; font-weight:700;">SC</div>\
-          <div style="font-weight:600; margin-top:8px; font-size:14px;">Sarah Chen</div>\
-          <div style="font-size:11px; color:var(--gray-400);">Member since 2024</div>\
-        </div>\
-        <div style="padding:0 16px;">\
-          <div style="font-size:10px; font-weight:600; color:var(--gray-400); text-transform:uppercase; letter-spacing:1px; margin-bottom:8px;">My Coverage</div>\
-          <div style="background:var(--gray-50); border-radius:10px; padding:12px; margin-bottom:8px;">\
-            <div style="display:flex; align-items:center; gap:8px;">\
-              <div style="width:28px; height:28px; border-radius:8px; background:var(--blue-bg); display:flex; align-items:center; justify-content:center; font-size:13px;">\u{1F3E0}</div>\
-              <div style="flex:1;">\
-                <div style="font-size:12px; font-weight:600;">Renters Insurance</div>\
-                <div style="font-size:10px; color:var(--gray-400);">$18/mo \u00B7 Renews Mar 2027</div>\
-              </div>\
-              <div style="font-size:9px; padding:2px 7px; border-radius:6px; background:var(--green-bg); color:var(--green); font-weight:600;">Active</div>\
-            </div>\
-          </div>\
-          <div style="background:white; border:1.5px solid var(--pink); border-radius:10px; padding:14px; box-shadow:0 4px 16px rgba(255,0,131,0.10);">\
-            <div style="font-size:12px; font-weight:600; margin-bottom:4px;">When does your car insurance renew?</div>\
-            <div style="font-size:10px; color:var(--gray-500); margin-bottom:10px; line-height:1.4;">We\'ll send a personalized quote with your 10% bundle discount 30 days before renewal.</div>\
-            <div class="dw-month-grid">\
-              <button class="dw-month-btn flow-trigger" onclick="advanceFlow(\'profile\')">May</button>\
-              <button class="dw-month-btn flow-trigger" onclick="advanceFlow(\'profile\')">Jun</button>\
-              <button class="dw-month-btn flow-trigger" onclick="advanceFlow(\'profile\')">Jul</button>\
-              <button class="dw-month-btn flow-trigger" onclick="advanceFlow(\'profile\')">Aug</button>\
-              <button class="dw-month-btn flow-trigger" onclick="advanceFlow(\'profile\')">Sep</button>\
-              <button class="dw-month-btn flow-trigger" onclick="advanceFlow(\'profile\')">Oct</button>\
-              <button class="dw-month-btn flow-trigger" onclick="advanceFlow(\'profile\')">Nov</button>\
-              <button class="dw-month-btn flow-trigger" onclick="advanceFlow(\'profile\')">Dec</button>\
-              <button class="dw-month-btn flow-trigger" onclick="advanceFlow(\'profile\')">Jan</button>\
-              <button class="dw-month-btn flow-trigger" onclick="advanceFlow(\'profile\')">Feb</button>\
-              <button class="dw-month-btn flow-trigger" onclick="advanceFlow(\'profile\')">Mar</button>\
-              <button class="dw-month-btn flow-trigger" onclick="advanceFlow(\'profile\')">Apr</button>\
-            </div>\
-            <button class="ce-skip" style="width:100%; text-align:center;">I\'ll add this later</button>\
-          </div>\
-        </div>', {nav: 'Home', action: '\u{1F514}', back: false, bodyStyle: 'padding:0; gap:0;'}),
+      title: 'The "I\'m Not Sure" Path',
+      desc: 'Same graceful handling as the onboarding flow - no pressure, infer from timing, and keep multiple recovery paths open.',
+      phone: phoneFrame('Maya', '\
+        <div class="chat-user">I\'m not sure</div>\
+        <div class="chat-maya" style="animation-delay:0.1s">No worries! You can usually find your renewal date in your current insurer\'s app or on your policy card. \u{1F4CB}</div>\
+        <div class="chat-maya" style="animation-delay:0.3s">I\'ll keep an eye out and reach out when the time might be right. You can also add your date anytime from your dashboard. \u{1F4C5}</div>\
+        <div class="chat-maya" style="animation-delay:0.5s">Glad we could resolve your claim quickly, Sarah! \u{1F3E0}</div>'),
       annotations: [
-        annCard(1, 'Inline Expansion', 'The card expands in place  - no page navigation, no modal, no context switch. The customer stays on their profile page throughout. Total effort: 2 taps.', [{type:'ux', text:'UX: Zero navigation = minimal drop-off'}]),
-        annCard(2, 'Familiar Month Grid', 'Same 4\u00D73 month grid used in onboarding and dashboard flows. Pattern consistency means returning customers don\'t need to learn a new interaction.', [{type:'data', text:'Data: Month-level precision sufficient'}]),
-        annCard(3, '"I\'ll Add This Later" Escape', 'Low-pressure escape hatch. The card collapses back to its invitation state. No guilt, no follow-up  - the option stays visible for whenever the customer is ready.', [{type:'insight', text:'Insight: No dead ends in any flow'}])
-      ],
-      hint: 'Select a month to continue \u2192'
-    },
-    {
-      title: 'Renewal Date Tracked',
-      desc: 'The profile updates to show the tracked renewal date with a confirmation banner  - the data flows into the same engine regardless of which touchpoint captured it.',
-      phone: phoneFrame('Lemonade', '\
-        <div style="text-align:center; padding:20px 16px 12px;">\
-          <div style="width:52px; height:52px; border-radius:50%; background:linear-gradient(135deg, var(--pink-bg), var(--pink)); display:inline-flex; align-items:center; justify-content:center; font-size:18px; color:white; font-weight:700;">SC</div>\
-          <div style="font-weight:600; margin-top:8px; font-size:14px;">Sarah Chen</div>\
-          <div style="font-size:11px; color:var(--gray-400);">Member since 2024</div>\
-        </div>\
-        <div style="padding:0 16px;">\
-          <div style="font-size:10px; font-weight:600; color:var(--gray-400); text-transform:uppercase; letter-spacing:1px; margin-bottom:8px;">My Coverage</div>\
-          <div style="background:var(--gray-50); border-radius:10px; padding:12px; margin-bottom:8px;">\
-            <div style="display:flex; align-items:center; gap:8px;">\
-              <div style="width:28px; height:28px; border-radius:8px; background:var(--blue-bg); display:flex; align-items:center; justify-content:center; font-size:13px;">\u{1F3E0}</div>\
-              <div style="flex:1;">\
-                <div style="font-size:12px; font-weight:600;">Renters Insurance</div>\
-                <div style="font-size:10px; color:var(--gray-400);">$18/mo \u00B7 Renews Mar 2027</div>\
-              </div>\
-              <div style="font-size:9px; padding:2px 7px; border-radius:6px; background:var(--green-bg); color:var(--green); font-weight:600;">Active</div>\
-            </div>\
-          </div>\
-          <div style="background:var(--green-bg); border:1.5px solid rgba(0,196,140,0.3); border-radius:10px; padding:12px; margin-bottom:8px;">\
-            <div style="display:flex; align-items:center; gap:8px;">\
-              <div style="width:28px; height:28px; border-radius:8px; background:white; display:flex; align-items:center; justify-content:center; font-size:13px;">\u{1F697}</div>\
-              <div style="flex:1;">\
-                <div style="font-size:12px; font-weight:600;">Car Insurance</div>\
-                <div style="font-size:10px; color:var(--green);">Renews Aug 2026 \u00B7 Reminder set \u2713</div>\
-              </div>\
-              <div style="font-size:9px; padding:2px 7px; border-radius:6px; background:var(--green-bg); color:var(--green); font-weight:600;">Tracked</div>\
-            </div>\
-          </div>\
-          <div style="background:var(--amber-bg); border-radius:8px; padding:10px 12px; text-align:center;">\
-            <div style="font-size:11px; color:#8B6914; font-weight:500;">\u{1F389} 10% bundle discount unlocked! We\'ll notify you in July.</div>\
-          </div>\
-        </div>', {nav: 'Home', action: '\u{1F514}', back: false, bodyStyle: 'padding:0; gap:0;'}),
-      annotations: [
-        annCard(1, 'Visual Confirmation', 'The card transforms from dashed pink (invitation) to solid green (tracked). The "Tracked" badge and green checkmark provide clear feedback that the action was successful.', [{type:'ux', text:'UX: State change = visual feedback'}]),
-        annCard(2, 'Bundle Discount Unlocked', 'A confirmation banner reinforces the value exchange: share your date \u2192 get a discount. The customer knows exactly what they gained and when to expect the payoff.', [{type:'metric', text:'Metric: 10% bundle discount confirmed'}]),
-        annCard(3, 'Same Engine, Different Entry', 'Whether captured here, during onboarding, or post-claim  - the renewal date feeds the same activation pipeline. The customer doesn\'t need to do anything else.', [{type:'data', text:'Data: All paths \u2192 same renewal engine'}])
+        annCard(1, 'Consistent Fallback', 'Same "no pressure" pattern as onboarding. The system infers a renewal window from claim timing and stores it as a soft signal. The customer never feels penalized for not knowing.', [{type:'ux', text:'UX: Consistent experience across touchpoints'}]),
+        annCard(2, 'Inference + Recovery', 'The inferred date enters the pipeline alongside explicit dates. The dashboard widget provides a persistent recovery path if the customer wants to update later.', [{type:'data', text:'Data: Inferred + explicit dates in same pipeline'}])
       ],
       hint: '\u2713 Flow complete',
       complete: true
@@ -3121,8 +3053,8 @@ var flows = {
           <button class="ce-skip">I don\'t know \u2192 remind me to check</button>\
         </div>', {nav: 'Home', action: '\u{1F514}', back: false, bodyStyle: 'padding: 0; gap: 0;'}),
       annotations: [
-        annCard(1, 'Month Grid  - Not Calendar Picker', 'A 4\u00D73 month grid  - not a full calendar. Month-level precision is sufficient for the 30-day activation window trigger, and it\'s what customers actually remember.', [{type:'data', text:'Data: Month-level precision is sufficient'}]),
-        annCard(2, 'The "I Don\'t Know" Escape', '"I don\'t know \u2192 remind me to check" stores the customer as an inference target and sets a soft reminder. No data is better than wrong data  - the dashboard keeps the door open.', [{type:'ux', text:'UX: No dead ends  - every path captures value'}])
+        annCard(1, 'Month Grid - Not Calendar Picker', 'A 4\u00D73 month grid - not a full calendar. Month-level precision is sufficient for the 30-day activation window trigger, and it\'s what customers actually remember.', [{type:'data', text:'Data: Month-level precision is sufficient'}]),
+        annCard(2, 'The "I Don\'t Know" Escape', '"I don\'t know \u2192 remind me to check" stores the customer as an inference target and sets a soft reminder. No data is better than wrong data - the dashboard keeps the door open.', [{type:'ux', text:'UX: No dead ends - every path captures value'}])
       ],
       hint: 'Select a month to continue \u2192'
     },
@@ -3387,6 +3319,12 @@ function renderFlow(flowId) {
       body.classList.add('transitioning');
       setTimeout(function() { body.classList.remove('transitioning'); }, 350);
     }
+    // Wire up phone back chevron
+    var backBtn = phoneEl.querySelector('.phone-header .back');
+    if (backBtn && backBtn.textContent.trim() && step > 0) {
+      backBtn.style.cursor = 'pointer';
+      backBtn.onclick = function() { goBack(flowId); };
+    }
   }
 
   // Update annotations
@@ -3448,8 +3386,7 @@ function renderFlow(flowId) {
 
 // Flow sequence: what comes after each flow
 var flowSequence = {
-  onboarding: { next: 'profile', type: 'capture', label: 'Profile Self-Serve' },
-  profile: { next: 'claim', type: 'capture', label: 'Post-Claim Follow-up' },
+  onboarding: { next: 'claim', type: 'capture', label: 'Post-Claim Follow-up' },
   claim: { next: 'dashboard', type: 'panel', panel: 'flow2', label: 'Dashboard Widget' },
   dashboard: { next: 'renewal', type: 'panel', panel: 'flow3', label: 'Renewal Activation' },
   renewal: null
@@ -3458,8 +3395,7 @@ var flowSequence = {
 // Reverse sequence: what comes before each flow
 var flowSequenceReverse = {
   onboarding: null,
-  profile: { prev: 'onboarding', type: 'capture', label: 'Renters Onboarding' },
-  claim: { prev: 'profile', type: 'capture', label: 'Profile Self-Serve' },
+  claim: { prev: 'onboarding', type: 'capture', label: 'Renters Onboarding' },
   dashboard: { prev: 'claim', type: 'panel', panel: 'flow1', capture: 'claim', label: 'Post-Claim Follow-up' },
   renewal: { prev: 'dashboard', type: 'panel', panel: 'flow2', label: 'Dashboard Widget' }
 };
@@ -3468,6 +3404,7 @@ function advanceFlow(flowId) {
   var flow = flows[flowId];
   var current = flowState[flowId] || 0;
   if (current < flow.screens.length - 1) {
+    delete flowPrevStep[flowId];
     flowState[flowId] = current + 1;
     renderFlow(flowId);
     var phoneEl = document.getElementById(flowId + 'Phone');
@@ -3480,7 +3417,12 @@ function advanceFlow(flowId) {
 function goBack(flowId) {
   var current = flowState[flowId] || 0;
   if (current > 0) {
-    flowState[flowId] = current - 1;
+    if (flowPrevStep[flowId] !== undefined) {
+      flowState[flowId] = flowPrevStep[flowId];
+      delete flowPrevStep[flowId];
+    } else {
+      flowState[flowId] = current - 1;
+    }
     renderFlow(flowId);
     var phoneEl = document.getElementById(flowId + 'Phone');
     if (phoneEl) {
@@ -3604,7 +3546,7 @@ document.querySelectorAll('.capture-tab').forEach(function(tab) {
 });
 
 // Initialize all flows
-['onboarding', 'claim', 'profile', 'dashboard', 'renewal'].forEach(function(flowId) {
+['onboarding', 'claim', 'dashboard', 'renewal'].forEach(function(flowId) {
   flowState[flowId] = 0;
   renderFlow(flowId);
 });
