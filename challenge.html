@@ -2839,8 +2839,8 @@ var flows = {
           <div class="quick-reply flow-trigger" onclick="goToStep(\'onboarding\', 3)">I\'m not sure</div>\
         </div>'),
       annotations: [
-        annCard(1, 'The Bundle Hook + Immediate Incentive', 'Before asking for the date, Maya leads with value: a personalized quote with 10% bundle discount. V1 tests an additional immediate incentive in one A/B arm (e.g., "$5 Giveback bonus") - giving the customer a reason to act now.', [{type:'metric', text:'Metric: 10% guaranteed bundle discount'}, {type:'insight', text:'Insight: Future value motivates, but immediate value converts'}]),
-        annCard(2, 'Smart Month Defaults', 'Buttons show the next 4 months dynamically (here: May-Aug for an April purchase). Renewals within ~4 months are immediately actionable - the 30-day outreach fires within one quarter. "Different month" expands the remaining 8 for the long-tail case, keeping the common path frictionless.', [{type:'ux', text:'UX: Reducing friction = higher capture rate'}, {type:'insight', text:'Insight: Smartest V1 approach'}]),
+        annCard(1, 'The Bundle Hook + Immediate Incentive', 'Before asking for the date, Maya leads with value: a personalized quote with 10% bundle discount. V1 tests an additional immediate incentive in one A/B arm (e.g., "$5 Giveback bonus") - giving the customer a reason to act now.', []),
+        annCard(2, 'Smart Month Defaults', 'Buttons show the next 4 months dynamically (here: May-Aug for an April purchase). Renewals within ~4 months are immediately actionable - the 30-day outreach fires within one quarter. "Different month" expands the remaining 8 for the long-tail case, keeping the common path frictionless.', [{type:'ux', text:'UX: Reducing friction = higher capture rate'}]),
         annCard(3, 'The "I\'m Not Sure" Escape', '~40% of customers won\'t know their renewal date. Maya doesn\'t pressure them - she offers a helpful tip and stores them as inferred targets. They can update later via the dashboard.', [{type:'data', text:'Data: "Not sure" \u2192 inferred from renters timing'}])
       ],
       hint: 'Select a month to continue \u2192'
@@ -2859,9 +2859,9 @@ var flows = {
         </div>\
         <div class="chat-maya" style="animation-delay:0.4s">In the meantime, enjoy your new renters coverage! You can always check car insurance rates anytime in the app. \u{1F3E0}</div>'),
       annotations: [
-        annCard(1, 'Specific Future Commitment', '"Early July  - about 30 days before your renewal" creates anticipation and legitimacy. It pre-frames the push notification. In the incentive A/B arm, Maya also confirms the immediate reward here ("$5 Giveback bonus added!").', [{type:'ux', text:'UX: Opt-in framing for future notification'}, {type:'insight', text:'Insight: Immediate confirmation reduces anxiety'}]),
-        annCard(2, 'The Three-Promise Preview', 'Listing what they\'ll get (personalized quote, automatic discount, seamless coverage) raises perceived value. When the push arrives, it delivers on a promise  - not an interruption.', [{type:'insight', text:'Insight: Promise now \u2192 deliver later = trust'}]),
-        annCard(3, 'Soft Exit with Optionality', '"Check car insurance rates anytime in the app" leaves the door open without pressure. Early explorers are high-intent signals.', [{type:'data', text:'Data: Early explorers = high-intent signals'}])
+        annCard(1, 'Specific Future Commitment', '"Early July  - about 30 days before your renewal" creates anticipation and legitimacy. It pre-frames the push notification. In the incentive A/B arm, Maya also confirms the immediate reward here ("$5 Giveback bonus added!").', [{type:'ux', text:'UX: Opt-in framing for future notification'}]),
+        annCard(2, 'The Three-Promise Preview', 'Listing what they\'ll get (personalized quote, automatic discount, seamless coverage) raises perceived value. When the push arrives, it delivers on a promise  - not an interruption.', []),
+        annCard(3, 'Soft Exit with Optionality', '"Check car insurance rates anytime in the app" leaves the door open without pressure. Early explorers are high-intent signals.', [])
       ],
       hint: 'Next: see the "I\'m not sure" path \u2192'
     },
@@ -2875,8 +2875,8 @@ var flows = {
         <div class="chat-maya" style="animation-delay:0.5s">Enjoy your new renters coverage! \u{1F3E0}</div>'),
       annotations: [
         annCard(1, 'No Pressure, No Dead End', 'Maya acknowledges the uncertainty without making the customer feel bad. The helpful tip ("check your insurer\'s app or policy card") gives them a concrete action if they want to follow up later.', [{type:'ux', text:'UX: Empathy > interrogation'}]),
-        annCard(2, 'Inference Engine', 'Behind the scenes, the system infers a likely renewal window from the renters purchase date. Most car policies are 6 or 12 months, so a customer buying renters in April likely renews car insurance in April or October. This inferred date enters the pipeline as a soft signal.', [{type:'data', text:'Data: Inferred date \u2192 soft activation signal'}]),
-        annCard(3, 'Multiple Recovery Paths', 'The customer can update their renewal date later via the dashboard widget. The system doesn\'t rely on a single collection moment - every touchpoint is a chance to capture or refine the data.', [{type:'insight', text:'Insight: No single point of failure'}])
+        annCard(2, 'Inference Engine', 'Behind the scenes, the system infers a likely renewal window from the renters purchase date. Most car policies are 6 or 12 months, so a customer buying renters in April likely renews car insurance in April or October. This inferred date enters the pipeline as a soft signal.', [{type:'metric', text:'Hypothesis: Validate with A/B test'}]),
+        annCard(3, 'Multiple Recovery Paths', 'The customer can update their renewal date later via the dashboard widget. The system doesn\'t rely on a single collection moment - every touchpoint is a chance to capture or refine the data.', [])
       ],
       hint: '\u2713 Flow complete',
       complete: true
@@ -2933,8 +2933,8 @@ var flows = {
           <div class="quick-reply flow-trigger" onclick="goToStep(\'claim\', 3)">I\'m not sure</div>\
         </div>'),
       annotations: [
-        annCard(1, 'Consistent UX Pattern', 'Same dynamic next-4-months quick replies as the onboarding flow. Customers who interact with multiple touchpoints see a familiar, predictable experience every time.', [{type:'ux', text:'UX: Pattern consistency builds trust'}]),
-        annCard(2, 'Cross-Touchpoint Data Merge', 'If the customer already provided a date during onboarding, this screen is skipped. The system checks for existing data before asking - never asks twice.', [{type:'data', text:'Data: Dedup across collection points'}])
+        annCard(1, 'Consistent UX Pattern', 'Same dynamic next-4-months quick replies as the onboarding flow. Customers who interact with multiple touchpoints see a familiar, predictable experience every time.', []),
+        annCard(2, 'Cross-Touchpoint Data Merge', 'If the customer already provided a date during onboarding, this screen is skipped. The system checks for existing data before asking - never asks twice.', [])
       ],
       hint: 'Select a month to continue \u2192'
     },
@@ -2946,8 +2946,8 @@ var flows = {
         <div class="chat-maya" style="animation-delay:0.1s">Noted! I\'ll reach out in early July with your personalized car quote  - with your 10% bundle discount already applied. \u{1F4C5}</div>\
         <div class="chat-maya" style="animation-delay:0.3s">Glad we could resolve your claim quickly, Sarah. Enjoy your coverage! \u{1F3E0}</div>'),
       annotations: [
-        annCard(1, 'Same Promise, Different Context', 'Whether captured during onboarding or post-claim - the system delivers the same promise: a personalized quote 30 days before renewal. Consistency builds trust.', [{type:'insight', text:'Insight: Consistent promises across touchpoints'}]),
-        annCard(2, 'Claim \u2192 Cross-Sell Pipeline', 'The claim resolution naturally transitions into the renewal engine. No separate campaign needed - the system captures the data inline and feeds it to the same activation pipeline.', [{type:'data', text:'Data: Unified pipeline for all capture points'}])
+        annCard(1, 'Same Promise, Different Context', 'Whether captured during onboarding or post-claim - the system delivers the same promise: a personalized quote 30 days before renewal. Consistency builds trust.', []),
+        annCard(2, 'Claim \u2192 Cross-Sell Pipeline', 'The claim resolution naturally transitions into the renewal engine. No separate campaign needed - the system captures the data inline and feeds it to the same activation pipeline.', [])
       ],
       hint: 'Next: see the "I\'m not sure" path \u2192'
     },
@@ -2960,7 +2960,7 @@ var flows = {
         <div class="chat-maya" style="animation-delay:0.3s">I\'ll keep an eye out and reach out when the time might be right. You can also add your date anytime from your dashboard. \u{1F4C5}</div>\
         <div class="chat-maya" style="animation-delay:0.5s">Glad we could resolve your claim quickly, Sarah! \u{1F3E0}</div>'),
       annotations: [
-        annCard(1, 'Consistent Fallback', 'Same "no pressure" pattern as onboarding. The system infers a renewal window from claim timing and stores it as a soft signal. The customer never feels penalized for not knowing.', [{type:'ux', text:'UX: Consistent experience across touchpoints'}]),
+        annCard(1, 'Consistent Fallback', 'Same "no pressure" pattern as onboarding. The system infers a renewal window from claim timing and stores it as a soft signal. The customer never feels penalized for not knowing.', []),
         annCard(2, 'Inference + Recovery', 'The inferred date enters the pipeline alongside explicit dates. The dashboard widget provides a persistent recovery path if the customer wants to update later.', [{type:'data', text:'Data: Inferred + explicit dates in same pipeline'}])
       ],
       hint: '\u2713 Flow complete',
@@ -3172,7 +3172,7 @@ var flows = {
       annotations: [
         annCard(1, '"As Promised"  - Delivering on the Commitment', 'The notification references the earlier conversation. This transforms a push from an interruption into a follow-through. The customer opted into this months ago; Lemonade is keeping its word.', [{type:'ux', text:'UX: Promised notification \u2260 unsolicited marketing'}]),
         annCard(2, 'Three Personalization Hooks', 'Customer\'s name ("Sarah"), bundle discount ("10%"), and timing ("next month"). Each element is pulled from existing data  - no new input required. Personalized pushes drive 3\u00D7 higher open rates.', [{type:'metric', text:'Metric: 3\u00D7 open rate with personalization'}]),
-        annCard(3, 'Single Shot  - No Nagging', 'V1 sends exactly one push and one parallel email per renewal cycle. If the customer doesn\'t engage, the dashboard widget remains as a passive fallback. No drip campaigns, no guilt.', [{type:'insight', text:'Insight: Restraint is a feature, not a limitation'}])
+        annCard(3, 'Single Shot  - No Nagging', 'Exactly one push and one parallel email per renewal cycle. If the customer doesn\'t engage, the dashboard widget remains as a passive fallback. No drip campaigns, no guilt.', [{type:'insight', text:'Insight: Restraint is a feature, not a limitation'}])
       ],
       hint: 'Tap the Lemonade notification to continue \u2192'
     },
@@ -3207,8 +3207,7 @@ var flows = {
         <button class="ce-save flow-trigger" onclick="advanceFlow(\'renewal\')" style="margin-top: 4px;">Continue \u2192</button>', {bodyStyle: 'gap: 8px;'}),
       annotations: [
         annCard(1, 'Pre-Filled = Low Friction', 'Name, address, date of birth, and contact info are already known from the renters policy. The customer only confirms vehicle details and selects coverage. <strong>4 of 7 fields are pre-filled</strong>, saving ~4 minutes.', [{type:'metric', text:'Metric: 60-90s vs. 5-10 min cold quote'}]),
-        annCard(2, 'Data Advantage  - Visualized', 'The green checkmarks make the pre-filled fields explicit. The customer sees exactly how their existing relationship pays off  - this isn\'t a generic quote, it\'s personalized.', [{type:'ux', text:'UX: Show the advantage, don\'t just claim it'}]),
-        annCard(3, 'Bundle Discount Applied Automatically', 'The 10% discount is shown as already applied  - not something to discover or apply. The customer evaluates Lemonade\'s rate with the discount baked in.', [{type:'data', text:'Data: Pre-filled \u2192 42% higher completion'}])
+        annCard(2, 'Bundle Discount Applied Automatically', 'The 10% discount is shown as already applied  - not something to discover or apply. The customer evaluates Lemonade\'s rate with the discount baked in.', [{type:'data', text:'Data: Pre-filled \u2192 42% higher completion'}])
       ],
       hint: 'Click "Continue" to see your quote \u2192'
     },
@@ -3258,9 +3257,8 @@ var flows = {
           <div class="quick-reply" style="font-size:11px;">Need different coverage</div>\
         </div>'),
       annotations: [
-        annCard(1, 'Every Decline is Data', 'Structured decline reasons feed directly into the car insurance pricing team\'s roadmap. "Too expensive" with segment and state data tells Lemonade exactly where it\'s losing on price. "Staying with current" reveals brand loyalty vs. price inertia. "Not ready" triggers adjusted re-queue timing. "Need different coverage" surfaces product gaps.', [{type:'data', text:'Data: Pricing feedback loop from non-conversions'}]),
-        annCard(2, 'Conversational, Not Clinical', 'Maya frames this as "help me do better"  - not a survey. Quick-reply buttons keep it to one tap. The customer feels heard, not interrogated. This is intelligence the company currently doesn\'t have  - the feature pays for itself even at low conversion rates.', [{type:'ux', text:'UX: Feedback that feels like care, not extraction'}]),
-        annCard(3, 'Actionable Routing', 'Each reason maps to a different downstream action and is tracked as structured data in the KPI table under competitive intelligence. Over time, aggregated decline patterns by segment and state become the pricing team\'s most actionable input for rate adjustments.', [{type:'metric', text:'Metric: Tracked in KPI table as competitive intelligence'}])
+        annCard(1, 'Conversational, Not Clinical', 'Maya frames this as "help me do better"  - not a survey. Quick-reply buttons keep it to one tap. The customer feels heard, not interrogated.', [{type:'ux', text:'UX: Feedback that feels like care, not extraction'}]),
+        annCard(2, 'Every Decline is Data', '"Too expensive" with segment and state data tells Lemonade exactly where it\'s losing on price. "Staying with current" reveals brand loyalty vs. price inertia. "Not ready" triggers adjusted re-queue timing. "Need different coverage" surfaces product gaps. Each reason is tracked as structured data in the KPI table.', [{type:'metric', text:'Metric: Tracked in KPI table as competitive intelligence'}])
       ],
       hint: 'Select "Too expensive" to continue \u2192'
     },
@@ -3277,9 +3275,8 @@ var flows = {
         </div>\
         <div class="chat-maya" style="animation-delay:0.2s">I\'ll check back before your next renewal  - rates change, and your bundle discount will still be here. \u{1F4C5}<br><br>In the meantime, enjoy your renters coverage! \u{1F3E0}</div>'),
       annotations: [
-        annCard(1, 'Respecting the Decision', 'Maya doesn\'t push back, offer a counter, or guilt-trip. She thanks the customer for the feedback and saves the quote. This builds the trust that makes next cycle\'s outreach welcome rather than annoying.', [{type:'insight', text:'Insight: Graceful exit > hard sell'}]),
-        annCard(2, 'Automatic Re-Queue', 'Behind the scenes, the customer is stored with a structured decline state (<code>declined:too_expensive</code>). Their renewal date rolls forward 12 months and they\'re automatically re-activated next cycle  - potentially with better rates informed by the very feedback they just gave. No manual intervention required.', [{type:'data', text:'Data: Customer re-enters funnel automatically'}]),
-        annCard(3, 'Quote Validity Window', 'The saved quote stays valid for 30 days, covering the full pre-renewal decision window. If the customer\'s competing renewal price comes in higher than expected, they can return and bind without re-quoting. The decline reason is logged and feeds the pricing team\'s competitive gap analysis.', [{type:'ux', text:'UX: Low-pressure fallback path'}])
+        annCard(1, 'Respecting the Decision', 'Maya doesn\'t push back, offer a counter, or guilt-trip. She thanks the customer for the feedback and saves the quote. This builds the trust that makes next cycle\'s outreach welcome rather than annoying.', []),
+        annCard(2, 'Automatic Re-Queue', 'Behind the scenes, the customer is stored with a structured decline state (<code>declined:too_expensive</code>). Their renewal date rolls forward 12 months and they\'re automatically re-activated next cycle  - potentially with better rates informed by the very feedback they just gave. No manual intervention required.', [{type:'data', text:'Data: Customer re-enters funnel automatically'}])
       ],
       hint: '\u2713 Flow complete',
       complete: true
@@ -3346,7 +3343,7 @@ function renderFlow(flowId) {
   if (hintEl) {
     hintEl.className = 'flow-hint' + (screen.complete ? ' flow-complete' : '');
     if (screen.complete) {
-      hintEl.innerHTML = screen.hint + '  - <span onclick="resetFlow(\'' + flowId + '\')" style="cursor:pointer; text-decoration:underline;">replay</span>';
+      hintEl.innerHTML = screen.hint + '  - <span onclick="event.stopPropagation(); resetFlow(\'' + flowId + '\')" style="cursor:pointer; text-decoration:underline;">replay</span>';
     } else {
       hintEl.textContent = screen.hint;
     }
