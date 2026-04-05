@@ -1950,6 +1950,7 @@ body {
   background: var(--pink-bg);
   border-radius: 8px;
   animation: hintPulse 2s ease-in-out infinite;
+  cursor: pointer;
 }
 .flow-hint.flow-complete {
   color: var(--green-dark);
@@ -3349,7 +3350,7 @@ function renderFlow(flowId) {
     } else {
       hintEl.textContent = screen.hint;
     }
-    if (screen.hintAction) {
+    if (!screen.complete) {
       hintEl.style.cursor = 'pointer';
       hintEl.onclick = function() { advanceFlow(flowId); };
     } else {
